@@ -3,21 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SocialAI Creator - Free AI-Powered Social Media Content Tool</title>
-    <meta name="description" content="Generate engaging social media content with AI. Free tool for posts, captions, and hashtags for all platforms.">
+    <meta name="description" content="Free AI-powered social media content creation tool. Generate posts, captions, and hashtags for all platforms without paying a penny.">
     <meta name="keywords" content="AI social media tool, free content generator, social media marketing, AI content creation">
+    <title>SocialAI Creator - Free AI-Powered Social Media Content Tool</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #6C63FF;
-            --secondary: #4A40E5;
-            --accent: #FF6584;
-            --success: #36D1DC;
-            --dark: #2A2A3C;
-            --light: #F8F9FC;
-            --gray: #7B7B8F;
-            --light-gray: #E4E4F1;
-            --gradient: linear-gradient(135deg, var(--primary), var(--success));
+            --secondary: #4A40D2;
+            --accent: #FF6B8B;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --warning: #f72585;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --gradient-start: #6C63FF;
+            --gradient-end: #4A40D2;
+            --card-bg: #ffffff;
+            --text-dark: #2D2D2D;
+            --text-light: #6C757D;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
         }
         
         * {
@@ -28,8 +35,8 @@
         }
         
         body {
-            background-color: var(--light);
-            color: var(--dark);
+            background-color: #fafbff;
+            color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -43,13 +50,13 @@
         
         /* Header Styles */
         header {
-            background: var(--dark);
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             color: white;
             padding: 1rem 0;
+            box-shadow: var(--shadow);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
         
         .header-content {
@@ -66,15 +73,7 @@
         }
         
         .logo span {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .logo i {
-            margin-right: 10px;
-            color: var(--primary);
+            color: var(--accent);
         }
         
         nav ul {
@@ -90,42 +89,51 @@
             color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s ease;
-            font-size: 1rem;
+            transition: var(--transition);
+            font-size: 0.95rem;
         }
         
         nav ul li a:hover {
-            color: var(--success);
+            color: var(--accent);
         }
         
         /* Hero Section */
         .hero {
             padding: 5rem 0;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%236C63FF" fill-opacity="0.1" d="M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,224C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>') no-repeat bottom;
-            background-size: cover;
             text-align: center;
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.05) 0%, rgba(74, 64, 210, 0.05) 100%);
             position: relative;
+            overflow: hidden;
         }
         
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 80%, rgba(108, 99, 255, 0.1) 0%, transparent 40%),
-                        radial-gradient(circle at 80% 20%, rgba(54, 209, 220, 0.1) 0%, transparent 40%);
-            z-index: -1;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.1) 0%, rgba(74, 64, 210, 0.1) 100%);
+            top: -150px;
+            right: -150px;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255, 107, 139, 0.1) 0%, rgba(255, 107, 139, 0.05) 100%);
+            bottom: -100px;
+            left: -100px;
         }
         
         .hero h1 {
-            font-size: 3.2rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
-            background: var(--gradient);
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            -webkit-text-fill-color: transparent;
             font-weight: 800;
         }
         
@@ -133,27 +141,47 @@
             font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto 2rem;
-            color: var(--gray);
+            color: var(--text-light);
         }
         
         .cta-button {
             display: inline-block;
-            background: var(--gradient);
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             color: white;
             padding: 1rem 2.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             border: none;
             cursor: pointer;
             font-size: 1.1rem;
-            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--gradient-end), var(--gradient-start));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
         }
         
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 25px rgba(108, 99, 255, 0.4);
+            box-shadow: 0 15px 30px rgba(108, 99, 255, 0.2);
+        }
+        
+        .cta-button:hover::before {
+            opacity: 1;
         }
         
         /* Tool Section */
@@ -162,9 +190,9 @@
         }
         
         .tool-container {
-            background: white;
+            background: var(--card-bg);
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow);
             padding: 2.5rem;
             margin-bottom: 2rem;
             position: relative;
@@ -176,9 +204,9 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--gradient);
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
         }
         
         .tool-header {
@@ -188,32 +216,26 @@
         
         .tool-header h2 {
             font-size: 2.5rem;
-            color: var(--dark);
+            color: var(--primary);
             margin-bottom: 0.5rem;
+            font-weight: 700;
         }
         
         .tool-header p {
-            color: var(--gray);
+            color: var(--text-light);
             font-size: 1.1rem;
         }
         
         .input-group {
             margin-bottom: 2rem;
-            position: relative;
         }
         
         .input-group label {
             display: block;
             margin-bottom: 0.8rem;
             font-weight: 600;
-            color: var(--dark);
-            display: flex;
-            align-items: center;
-        }
-        
-        .input-group label i {
-            margin-right: 10px;
-            color: var(--primary);
+            color: var(--text-dark);
+            font-size: 1.1rem;
         }
         
         .input-group select, 
@@ -224,7 +246,7 @@
             border: 2px solid var(--light-gray);
             border-radius: 12px;
             font-size: 1rem;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
         
         .input-group select:focus, 
@@ -243,7 +265,7 @@
         .options-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
+            gap: 1.2rem;
             margin-bottom: 2rem;
         }
         
@@ -253,30 +275,33 @@
             padding: 1.2rem;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
         
         .option-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
             border-color: var(--primary);
         }
         
         .option-card.active {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             color: white;
             border-color: var(--primary);
         }
         
-        .option-card i {
+        .option-icon {
             font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            display: block;
+            margin-bottom: 0.8rem;
         }
         
         .generate-btn {
-            background: var(--gradient);
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             color: white;
             border: none;
             padding: 1.2rem 2.5rem;
@@ -286,14 +311,14 @@
             display: block;
             width: 100%;
             margin: 2rem 0;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             font-weight: 600;
-            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+            box-shadow: var(--shadow);
         }
         
         .generate-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 25px rgba(108, 99, 255, 0.4);
+            box-shadow: 0 15px 30px rgba(108, 99, 255, 0.2);
         }
         
         .generate-btn:disabled {
@@ -301,36 +326,24 @@
             cursor: not-allowed;
         }
         
-        .loading {
-            display: none;
-            text-align: center;
-            margin: 2rem 0;
-        }
-        
-        .loading i {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-        
-        .loading p {
-            color: var(--gray);
-        }
-        
         .results-container {
             margin-top: 2rem;
             display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .results-container h3 {
             margin-bottom: 1.5rem;
             color: var(--secondary);
+            font-size: 1.8rem;
             display: flex;
             align-items: center;
-        }
-        
-        .results-container h3 i {
-            margin-right: 10px;
+            gap: 10px;
         }
         
         .result-card {
@@ -338,13 +351,19 @@
             border-radius: 15px;
             padding: 2rem;
             margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
             position: relative;
-            border-left: 5px solid var(--primary);
         }
         
-        .result-content {
-            line-height: 1.8;
-            font-size: 1.1rem;
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
+            border-radius: 15px 0 0 15px;
         }
         
         .result-actions {
@@ -354,27 +373,24 @@
         }
         
         .result-actions button {
-            padding: 0.7rem 1.5rem;
+            padding: 0.8rem 1.5rem;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 500;
             display: flex;
             align-items: center;
-            transition: all 0.3s ease;
-        }
-        
-        .result-actions button i {
-            margin-right: 8px;
+            gap: 8px;
+            transition: var(--transition);
         }
         
         .copy-btn {
-            background: var(--success);
+            background: var(--primary);
             color: white;
         }
         
         .copy-btn:hover {
-            background: #2ab4c7;
+            background: var(--secondary);
         }
         
         .download-btn {
@@ -383,7 +399,7 @@
         }
         
         .download-btn:hover {
-            background: #ff4370;
+            background: #e55a7d;
         }
         
         /* Ad Spaces */
@@ -393,21 +409,30 @@
             padding: 2rem;
             text-align: center;
             margin: 3rem 0;
-            min-height: 150px;
+            min-height: 250px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px dashed var(--light-gray);
+            border: 2px dashed var(--gray);
+            flex-direction: column;
         }
         
         .ad-space p {
             color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        
+        .ad-space code {
+            background: var(--light-gray);
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
         }
         
         /* Features Section */
         .features {
             padding: 5rem 0;
-            background: linear-gradient(to bottom, var(--light), #f0f2ff);
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.03) 0%, rgba(74, 64, 210, 0.03) 100%);
         }
         
         .section-header {
@@ -417,74 +442,57 @@
         
         .section-header h2 {
             font-size: 2.5rem;
-            color: var(--dark);
+            color: var(--primary);
             margin-bottom: 1rem;
+            font-weight: 700;
         }
         
         .section-header p {
-            color: var(--gray);
+            color: var(--text-light);
             font-size: 1.1rem;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
         }
         
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
         }
         
         .feature-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 15px;
             padding: 2rem;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .feature-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--gradient);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
         }
         
         .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .feature-card:hover::after {
-            transform: scaleX(1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
         
         .feature-icon {
             font-size: 3rem;
+            color: var(--primary);
             margin-bottom: 1.5rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
         }
         
         .feature-card h3 {
             margin-bottom: 1rem;
-            color: var(--dark);
+            color: var(--secondary);
             font-size: 1.4rem;
+        }
+        
+        .feature-card p {
+            color: var(--text-light);
         }
         
         /* Footer */
         footer {
-            background: var(--dark);
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             color: white;
             padding: 4rem 0 1.5rem;
         }
@@ -497,14 +505,9 @@
         }
         
         .footer-column h3 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 1.5rem;
-            color: var(--success);
-        }
-        
-        .footer-column p {
-            color: #ddd;
-            margin-bottom: 1.5rem;
+            color: var(--accent);
         }
         
         .footer-column ul {
@@ -512,58 +515,101 @@
         }
         
         .footer-column ul li {
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
         }
         
         .footer-column ul li a {
-            color: #ddd;
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             display: flex;
             align-items: center;
-        }
-        
-        .footer-column ul li a i {
-            margin-right: 10px;
-            font-size: 0.9rem;
+            gap: 8px;
         }
         
         .footer-column ul li a:hover {
-            color: var(--success);
-        }
-        
-        .social-icons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        
-        .social-icons a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
             color: white;
-            transition: all 0.3s ease;
-        }
-        
-        .social-icons a:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
+            transform: translateX(5px);
         }
         
         .copyright {
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #aaa;
+            color: rgba(255, 255, 255, 0.7);
             font-size: 0.9rem;
         }
         
+        /* Loading Animation */
+        .loader {
+            display: none;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .loader-dots {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+        
+        .loader-dots div {
+            position: absolute;
+            top: 33px;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: var(--primary);
+            animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        }
+        
+        .loader-dots div:nth-child(1) {
+            left: 8px;
+            animation: loader-dots1 0.6s infinite;
+        }
+        
+        .loader-dots div:nth-child(2) {
+            left: 8px;
+            animation: loader-dots2 0.6s infinite;
+        }
+        
+        .loader-dots div:nth-child(3) {
+            left: 32px;
+            animation: loader-dots2 0.6s infinite;
+        }
+        
+        .loader-dots div:nth-child(4) {
+            left: 56px;
+            animation: loader-dots3 0.6s infinite;
+        }
+        
+        @keyframes loader-dots1 {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes loader-dots3 {
+            0% { transform: scale(1); }
+            100% { transform: scale(0); }
+        }
+        
+        @keyframes loader-dots2 {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(24px, 0); }
+        }
+        
         /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .options-container {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+        }
+        
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -581,29 +627,37 @@
             }
             
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
             
-            .options-container {
-                grid-template-columns: 1fr 1fr;
+            .hero p {
+                font-size: 1.1rem;
             }
             
             .tool-header h2 {
                 font-size: 2rem;
             }
             
-            .section-header h2 {
-                font-size: 2rem;
+            .options-container {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .feature-card {
+                padding: 1.5rem;
             }
         }
         
-        @media (max-width: 480px) {
-            .options-container {
-                grid-template-columns: 1fr;
+        @media (max-width: 576px) {
+            .hero {
+                padding: 3rem 0;
             }
             
             .hero h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+            }
+            
+            .options-container {
+                grid-template-columns: 1fr;
             }
             
             .result-actions {
@@ -614,43 +668,14 @@
                 width: 100%;
                 justify-content: center;
             }
-        }
-        
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.6s ease forwards;
-        }
-        
-        /* Notification */
-        .notification {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 1rem 1.5rem;
-            background: var(--success);
-            color: white;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            z-index: 1000;
-            transform: translateY(100px);
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-        
-        .notification.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        .notification i {
-            margin-right: 10px;
+            
+            .feature-card {
+                padding: 1.2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -660,7 +685,7 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <i class="fas fa-brain"></i>Social<span>AI</span> Creator
+                    <i class="fas fa-brain"></i> Social<span>AI</span> Creator
                 </div>
                 <nav>
                     <ul>
@@ -678,15 +703,16 @@
     <section class="hero">
         <div class="container">
             <h1>Create Stunning Social Media Content</h1>
-            <p>Generate engaging posts, captions, and hashtags for all social platforms in seconds with our advanced AI technology. Completely free!</p>
-            <a href="#tool" class="cta-button">Start Creating Now <i class="fas fa-arrow-right"></i></a>
+            <p>Generate engaging posts, captions, and hashtags for all social platforms in seconds. No payments, no subscriptions - completely free!</p>
+            <a href="#tool" class="cta-button"><i class="fas fa-wand-magic-sparkles"></i> Start Creating Now</a>
         </div>
     </section>
 
     <!-- Ad Space -->
     <div class="container">
         <div class="ad-space">
-            <p>Ad Space - Google AdSense Unit ID: <code>ca-pub-xxxxxxxxxxxxxxxx</code></p>
+            <p><i class="fas fa-ad"></i> Ad Space - Google AdSense Unit ID</p>
+            <code>ca-pub-xxxxxxxxxxxxxxxx</code>
         </div>
     </div>
 
@@ -698,16 +724,16 @@
                 <p>Create optimized social media content in seconds with our powerful AI</p>
             </div>
             
-            <div class="tool-container fade-in">
+            <div class="tool-container">
                 <div class="input-group">
-                    <label for="platform"><i class="fas fa-th-large"></i> Select Social Media Platform</label>
+                    <label for="platform"><i class="fas fa-layer-group"></i> Select Social Media Platform</label>
                     <select id="platform">
-                        <option value="Facebook">Facebook</option>
-                        <option value="Instagram">Instagram</option>
-                        <option value="Twitter">Twitter/X</option>
-                        <option value="LinkedIn">LinkedIn</option>
-                        <option value="TikTok">TikTok</option>
-                        <option value="Pinterest">Pinterest</option>
+                        <option value="facebook">Facebook</option>
+                        <option value="instagram">Instagram</option>
+                        <option value="twitter">Twitter/X</option>
+                        <option value="linkedin">LinkedIn</option>
+                        <option value="tiktok">TikTok</option>
+                        <option value="pinterest">Pinterest</option>
                     </select>
                 </div>
                 
@@ -729,45 +755,70 @@
                 <div class="input-group">
                     <label for="tone"><i class="fas fa-palette"></i> Select Tone</label>
                     <div class="options-container">
-                        <div class="option-card active" data-tone="professional">
-                            <i class="fas fa-briefcase"></i>
-                            <span>Professional</span>
+                        <div class="option-card active" data-tone="Humorous">
+                            <div class="option-icon">😄</div>
+                            <div>Humorous</div>
                         </div>
-                        <div class="option-card" data-tone="casual">
-                            <i class="fas fa-comment"></i>
-                            <span>Casual</span>
+                        <div class="option-card" data-tone="Inspirational">
+                            <div class="option-icon">🌟</div>
+                            <div>Inspirational</div>
                         </div>
-                        <div class="option-card" data-tone="funny">
-                            <i class="fas fa-laugh"></i>
-                            <span>Funny</span>
+                        <div class="option-card" data-tone="Informative">
+                            <div class="option-icon">📚</div>
+                            <div>Informative</div>
                         </div>
-                        <div class="option-card" data-tone="inspirational">
-                            <i class="fas fa-fire"></i>
-                            <span>Inspirational</span>
+                        <div class="option-card" data-tone="Casual">
+                            <div class="option-icon">👋</div>
+                            <div>Casual</div>
                         </div>
-                        <div class="option-card" data-tone="urgent">
-                            <i class="fas fa-bolt"></i>
-                            <span>Urgent</span>
+                        <div class="option-card" data-tone="Formal">
+                            <div class="option-icon">💼</div>
+                            <div>Formal</div>
+                        </div>
+                        <div class="option-card" data-tone="Witty">
+                            <div class="option-icon">🙃</div>
+                            <div>Witty</div>
+                        </div>
+                        <div class="option-card" data-tone="Enthusiastic">
+                            <div class="option-icon">🎉</div>
+                            <div>Enthusiastic</div>
+                        </div>
+                        <div class="option-card" data-tone="Empathetic">
+                            <div class="option-icon">💖</div>
+                            <div>Empathetic</div>
+                        </div>
+                        <div class="option-card" data-tone="Convincing">
+                            <div class="option-icon">💬</div>
+                            <div>Convincing</div>
+                        </div>
+                        <div class="option-card" data-tone="Teasing">
+                            <div class="option-icon">😛</div>
+                            <div>Teasing</div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="input-group">
-                    <label for="additionalInfo"><i class="fas fa-info-circle"></i> Additional Information (Optional)</label>
+                    <label for="additionalInfo"><i class="fas fa-plus-circle"></i> Additional Information (Optional)</label>
                     <textarea id="additionalInfo" placeholder="Any specific details, keywords, or context for the AI..."></textarea>
                 </div>
                 
-                <button id="generateBtn" class="generate-btn"><i class="fas fa-wand-magic-sparkles"></i> Generate Content</button>
+                <button id="generateBtn" class="generate-btn"><i class="fas fa-sparkles"></i> Generate Content</button>
                 
-                <div class="loading" id="loading">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>AI is generating your content... This may take a few seconds</p>
+                <div class="loader" id="loader">
+                    <div class="loader-dots">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <p>AI is crafting your perfect content...</p>
                 </div>
                 
                 <div class="results-container" id="resultsContainer">
                     <h3><i class="fas fa-rocket"></i> Generated Content</h3>
                     <div class="result-card">
-                        <div class="result-content" id="generatedContent"></div>
+                        <div id="generatedContent"></div>
                         <div class="result-actions">
                             <button class="copy-btn" id="copyBtn"><i class="fas fa-copy"></i> Copy Text</button>
                             <button class="download-btn" id="downloadBtn"><i class="fas fa-download"></i> Download as Text</button>
@@ -781,7 +832,8 @@
     <!-- Ad Space -->
     <div class="container">
         <div class="ad-space">
-            <p>Ad Space - Google AdSense Unit ID: <code>ca-pub-xxxxxxxxxxxxxxxx</code></p>
+            <p><i class="fas fa-ad"></i> Ad Space - Google AdSense Unit ID</p>
+            <code>ca-pub-xxxxxxxxxxxxxxxx</code>
         </div>
     </div>
 
@@ -790,41 +842,41 @@
         <div class="container">
             <div class="section-header">
                 <h2>Powerful Features</h2>
-                <p>Everything you need to create engaging social media content that converts</p>
+                <p>Everything you need to create engaging social media content</p>
             </div>
             
             <div class="features-grid">
-                <div class="feature-card fade-in">
-                    <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
                     <h3>Multi-Platform Support</h3>
-                    <p>Generate optimized content for all major social platforms with platform-specific formatting and best practices.</p>
+                    <p>Generate optimized content for Facebook, Instagram, Twitter, LinkedIn, TikTok, and more with platform-specific formatting.</p>
                 </div>
                 
-                <div class="feature-card fade-in">
-                    <div class="feature-icon"><i class="fas fa-sliders-h"></i></div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-palette"></i></div>
                     <h3>Tone Customization</h3>
-                    <p>Choose from professional, casual, funny, inspirational, or urgent tones to match your brand voice.</p>
+                    <p>Choose from 10 different tones to perfectly match your brand voice and audience preferences.</p>
                 </div>
                 
-                <div class="feature-card fade-in">
+                <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-bolt"></i></div>
                     <h3>Instant Generation</h3>
                     <p>Create high-quality social media content in seconds, saving you hours of brainstorming and writing.</p>
                 </div>
                 
-                <div class="feature-card fade-in">
+                <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-download"></i></div>
                     <h3>Export Options</h3>
                     <p>Copy content directly to clipboard or download as text files for easy access and organization.</p>
                 </div>
                 
-                <div class="feature-card fade-in">
+                <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-hashtag"></i></div>
                     <h3>Hashtag Suggestions</h3>
                     <p>Get relevant, trending hashtags to increase your content's visibility and engagement.</p>
                 </div>
                 
-                <div class="feature-card fade-in">
+                <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-gift"></i></div>
                     <h3>Completely Free</h3>
                     <p>No hidden fees, no subscriptions, no paywalls. Access all features without spending a penny.</p>
@@ -840,12 +892,6 @@
                 <div class="footer-column">
                     <h3>SocialAI Creator</h3>
                     <p>The completely free AI-powered tool for creating engaging social media content across all platforms.</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
                 </div>
                 
                 <div class="footer-column">
@@ -874,125 +920,215 @@
         </div>
     </footer>
 
-    <!-- Notification -->
-    <div class="notification" id="notification">
-        <i class="fas fa-check-circle"></i>
-        <span id="notificationText"></span>
-    </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // API Key (in a real application, this should be handled securely on the backend)
+            // API Key (not visible to users)
             const API_KEY = "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";
-            const API_URL = "https://api.perplexity.ai/chat/completions";
-            
-            // Elements
-            const generateBtn = document.getElementById('generateBtn');
-            const loadingElement = document.getElementById('loading');
-            const resultsContainer = document.getElementById('resultsContainer');
-            const generatedContent = document.getElementById('generatedContent');
-            const copyBtn = document.getElementById('copyBtn');
-            const downloadBtn = document.getElementById('downloadBtn');
-            const notification = document.getElementById('notification');
-            const notificationText = document.getElementById('notificationText');
             
             // Tone selection
             const toneOptions = document.querySelectorAll('.option-card');
-            let selectedTone = 'professional';
-            
             toneOptions.forEach(option => {
                 option.addEventListener('click', function() {
                     toneOptions.forEach(opt => opt.classList.remove('active'));
                     this.classList.add('active');
-                    selectedTone = this.getAttribute('data-tone');
                 });
             });
             
             // Generate button functionality
+            const generateBtn = document.getElementById('generateBtn');
+            const resultsContainer = document.getElementById('resultsContainer');
+            const generatedContent = document.getElementById('generatedContent');
+            const loader = document.getElementById('loader');
+            
             generateBtn.addEventListener('click', async function() {
                 // Get form values
                 const platform = document.getElementById('platform').value;
                 const contentType = document.getElementById('contentType').value;
                 const topic = document.getElementById('topic').value;
+                const activeTone = document.querySelector('.option-card.active').getAttribute('data-tone');
                 const additionalInfo = document.getElementById('additionalInfo').value;
                 
                 // Validate input
                 if (!topic.trim()) {
-                    showNotification('Please enter a topic or keyword to generate content.', 'error');
+                    alert('Please enter a topic or keyword to generate content.');
                     return;
                 }
                 
                 // Show loading state
                 generateBtn.disabled = true;
-                loadingElement.style.display = 'block';
+                loader.style.display = 'block';
                 resultsContainer.style.display = 'none';
                 
                 try {
-                    // Prepare the prompt for the AI
-                    const prompt = `Create ${contentType} for ${platform} with a ${selectedTone} tone about ${topic}. ${additionalInfo ? 'Additional context: ' + additionalInfo : ''}`;
-                    
-                    // Call the Perplexity API
-                    const response = await fetch(API_URL, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${API_KEY}`
-                        },
-                        body: JSON.stringify({
-                            model: 'sonar',
-                            messages: [
-                                {
-                                    role: 'system',
-                                    content: 'You are an expert social media content creator. Generate engaging, platform-appropriate content based on user requests.'
-                                },
-                                {
-                                    role: 'user',
-                                    content: prompt
-                                }
-                            ],
-                            temperature: 0.7,
-                            max_tokens: 1000
-                        })
-                    });
-                    
-                    if (!response.ok) {
-                        throw new Error(`API error: ${response.status}`);
-                    }
-                    
-                    const data = await response.json();
-                    
-                    // Extract the generated content
-                    const aiContent = data.choices[0].message.content;
+                    // Generate content using Perplexity API
+                    const content = await generateContentWithAI(platform, contentType, topic, activeTone, additionalInfo);
                     
                     // Display results
-                    generatedContent.innerHTML = formatContent(aiContent);
+                    generatedContent.innerHTML = content;
                     resultsContainer.style.display = 'block';
                     
                     // Scroll to results
                     resultsContainer.scrollIntoView({ behavior: 'smooth' });
-                    
-                    showNotification('Content generated successfully!', 'success');
-                    
                 } catch (error) {
-                    console.error('Error calling API:', error);
-                    
-                    // Fallback to simulated content if API fails
-                    generatedContent.innerHTML = formatContent(generateFallbackContent(platform, contentType, topic, selectedTone, additionalInfo));
+                    console.error('Error generating content:', error);
+                    generatedContent.innerHTML = `
+                        <p>Sorry, we encountered an error generating your content. Please try again.</p>
+                        <p>If the problem persists, here's a sample based on your request:</p>
+                        <br>
+                        ${generateSampleContent(platform, contentType, topic, activeTone, additionalInfo)}
+                    `;
                     resultsContainer.style.display = 'block';
-                    
-                    showNotification('Generated content (offline mode). API connection failed.', 'warning');
                 } finally {
-                    // Reset button and hide loading
+                    // Reset button and hide loader
                     generateBtn.disabled = false;
-                    loadingElement.style.display = 'none';
+                    loader.style.display = 'none';
                 }
             });
             
+            // Function to generate content using Perplexity API
+            async function generateContentWithAI(platform, contentType, topic, tone, additionalInfo) {
+                // Construct the prompt based on user inputs
+                let prompt = `Create ${contentType} for ${platform} about ${topic} with a ${tone.toLowerCase()} tone.`;
+                
+                if (additionalInfo) {
+                    prompt += ` Additional context: ${additionalInfo}`;
+                }
+                
+                // API request to Perplexity
+                const response = await fetch('https://api.perplexity.ai/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${API_KEY}`
+                    },
+                    body: JSON.stringify({
+                        model: 'sonar',
+                        messages: [
+                            {
+                                role: 'system',
+                                content: 'You are an expert social media content creator. Generate engaging, platform-appropriate content based on user requests.'
+                            },
+                            {
+                                role: 'user',
+                                content: prompt
+                            }
+                        ],
+                        max_tokens: 1000,
+                        temperature: 0.7
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('API request failed');
+                }
+                
+                const data = await response.json();
+                return data.choices[0].message.content;
+            }
+            
+            // Function to generate sample content (fallback)
+            function generateSampleContent(platform, contentType, topic, tone, additionalInfo) {
+                // Sample content based on inputs
+                let content = '';
+                
+                if (contentType === 'post') {
+                    content = `
+                        <h4>${tone} ${platform.charAt(0).toUpperCase() + platform.slice(1)} Post about ${topic}:</h4>
+                        <p>Here's an engaging ${tone.toLowerCase()} post about ${topic} tailored for ${platform}.</p>
+                        <p>${getToneSpecificText(tone, topic)}</p>
+                        <p>What are your thoughts on ${topic}? Share in the comments below! 👇</p>
+                        <p>#${topic.replace(/\s+/g, '')} #${tone} #${platform}</p>
+                    `;
+                } else if (contentType === 'hashtags') {
+                    content = `
+                        <h4>${tone} Hashtags for ${topic}:</h4>
+                        <p>#${topic.replace(/\s+/g, '')} #${tone}${topic.replace(/\s+/g, '')} #${platform}</p>
+                        <p>#${getToneHashtags(tone, topic)}</p>
+                        <p>#Trending${topic.replace(/\s+/g, '')} #BestOf${topic.replace(/\s+/g, '')}</p>
+                    `;
+                } else if (contentType === 'adcopy') {
+                    content = `
+                        <h4>${tone} Ad Copy for ${topic}:</h4>
+                        <p>Discover the amazing world of ${topic} with our exclusive offer!</p>
+                        <p>${getToneSpecificText(tone, topic)}</p>
+                        <p>Limited time offer - act now! 🚀</p>
+                    `;
+                } else if (contentType === 'videoidea') {
+                    content = `
+                        <h4>${tone} Video Idea for ${topic}:</h4>
+                        <p>Create a ${tone.toLowerCase()} video about ${topic} that includes:</p>
+                        <ul>
+                            <li>An engaging hook in the first 3 seconds</li>
+                            <li>${getToneVideoIdea(tone, topic)}</li>
+                            <li>A clear call to action at the end</li>
+                        </ul>
+                    `;
+                }
+                
+                if (additionalInfo) {
+                    content += `<p><strong>Customized based on your input:</strong> ${additionalInfo}</p>`;
+                }
+                
+                return content;
+            }
+            
+            // Helper functions for sample content
+            function getToneSpecificText(tone, topic) {
+                const toneTexts = {
+                    'Humorous': `Why did the ${topic} cross the road? To get to the other side of your feed! 😂`,
+                    'Inspirational': `Let the power of ${topic} inspire you to achieve greatness today. ✨`,
+                    'Informative': `Did you know that ${topic} has been shown to improve engagement by up to 45%?`,
+                    'Casual': `Hey there! Just wanted to chat about ${topic} and see what you think.`,
+                    'Formal': `We are pleased to present our latest insights on ${topic} for professional consideration.`,
+                    'Witty': `They say ${topic} is like a box of chocolates - you never know what you're gonna get!`,
+                    'Enthusiastic': `OMG! I'm so excited about ${topic} - it's absolutely amazing! 🎉`,
+                    'Empathetic': `We understand that ${topic} can be challenging sometimes, and we're here to help.`,
+                    'Convincing': `You won't find a better solution for ${topic} than what we're offering - guaranteed!`,
+                    'Teasing': `Wait until you see what we've got cooking with ${topic}... it's going to blow your mind! 😉`
+                };
+                
+                return toneTexts[tone] || `This is some engaging content about ${topic}.`;
+            }
+            
+            function getToneHashtags(tone, topic) {
+                const toneHashtags = {
+                    'Humorous': `Funny${topic.replace(/\s+/g, '')} LOL`,
+                    'Inspirational': `Motivation Inspire`,
+                    'Informative': `Learn Facts`,
+                    'Casual': `Chat Daily`,
+                    'Formal': `Professional Business`,
+                    'Witty': `Clever Smart`,
+                    'Enthusiastic': `Excited Amazing`,
+                    'Empathetic': `Support Caring`,
+                    'Convincing': `Proof Results`,
+                    'Teasing': `SneakPeek ComingSoon`
+                };
+                
+                return toneHashtags[tone] || `Content${topic.replace(/\s+/g, '')}`;
+            }
+            
+            function getToneVideoIdea(tone, topic) {
+                const toneVideoIdeas = {
+                    'Humorous': `A funny skit related to ${topic} that will make viewers laugh`,
+                    'Inspirational': `An inspiring story about how ${topic} changed someone's life`,
+                    'Informative': `Key facts and statistics about ${topic} presented in an engaging way`,
+                    'Casual': `A relaxed chat about ${topic} like you're talking with friends`,
+                    'Formal': `A well-structured presentation on the benefits of ${topic}`,
+                    'Witty': `A clever take on ${topic} that shows your creative side`,
+                    'Enthusiastic': `An energetic review of ${topic} showing genuine excitement`,
+                    'Empathetic': `A compassionate discussion about challenges with ${topic} and solutions`,
+                    'Convincing': `Persuasive arguments why ${topic} is essential for your audience`,
+                    'Teasing': `A preview of exciting ${topic} content coming soon without giving everything away`
+                };
+                
+                return toneVideoIdeas[tone] || `Engaging content about ${topic} that keeps viewers watching`;
+            }
+            
             // Copy functionality
+            const copyBtn = document.getElementById('copyBtn');
             copyBtn.addEventListener('click', function() {
                 const textToCopy = generatedContent.textContent;
                 navigator.clipboard.writeText(textToCopy).then(() => {
-                    showNotification('Content copied to clipboard!', 'success');
                     copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
                     setTimeout(() => {
                         copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy Text';
@@ -1001,6 +1137,7 @@
             });
             
             // Download functionality
+            const downloadBtn = document.getElementById('downloadBtn');
             downloadBtn.addEventListener('click', function() {
                 const textToDownload = generatedContent.textContent;
                 const blob = new Blob([textToDownload], { type: 'text/plain' });
@@ -1014,110 +1151,6 @@
                     document.body.removeChild(a);
                     URL.revokeObjectURL(url);
                 }, 0);
-                
-                showNotification('Content downloaded successfully!', 'success');
-            });
-            
-            // Format content with line breaks and styling
-            function formatContent(content) {
-                // Convert line breaks to HTML
-                return content.replace(/\n/g, '<br>');
-            }
-            
-            // Show notification
-            function showNotification(message, type) {
-                notificationText.textContent = message;
-                
-                // Set color based on type
-                if (type === 'success') {
-                    notification.style.background = 'var(--success)';
-                } else if (type === 'error') {
-                    notification.style.background = 'var(--accent)';
-                } else if (type === 'warning') {
-                    notification.style.background = '#ff9800';
-                }
-                
-                notification.classList.add('show');
-                
-                // Hide after 3 seconds
-                setTimeout(() => {
-                    notification.classList.remove('show');
-                }, 3000);
-            }
-            
-            // Fallback content generation if API fails
-            function generateFallbackContent(platform, contentType, topic, tone, additionalInfo) {
-                // Sample content templates
-                const contentSamples = {
-                    post: {
-                        professional: `Elevate your ${topic} strategy with our latest insights. Discover how to maximize engagement and drive results with data-driven approaches.\n\n#${topic.replace(/\s+/g, '')} #SocialMediaStrategy`,
-                        casual: `Hey everyone! 👋 Just wanted to share some cool thoughts about ${topic}. What's your take on this? Let's chat in the comments! 😊\n\n#${topic.replace(/\s+/g, '')}`,
-                        funny: `Why did the ${topic} cross the road? To get to the other side of your feed! 😂 Don't mind me, just here to bring some ${topic} humor to your day!\n\n#${topic.replace(/\s+/g, '')}Funny`,
-                        inspirational: `Your journey with ${topic} begins with a single step. Today, challenge yourself to new heights and discover what you're truly capable of. ✨\n\n#${topic.replace(/\s+/g, '')}Goals #Motivation`,
-                        urgent: `🚨 Last chance to upgrade your ${topic} strategy! Don't miss out on these game-changing insights that are transforming approaches everywhere.\n\n#${topic.replace(/\s+/g, '')} #LimitedTime`
-                    },
-                    hashtags: {
-                        professional: `#${topic.replace(/\s+/g, '')} #${topic.replace(/\s+/g, '')}Strategy #ProfessionalTips #IndustryInsights #BusinessGrowth #MarketingTips #SuccessStrategies`,
-                        casual: `#${topic.replace(/\s+/g, '')} #Daily${topic.replace(/\s+/g, '')} #Fun${topic.replace(/\s+/g, '')} #ShareYourThoughts #CommunityChat #LetsTalk${topic.replace(/\s+/g, '')}`,
-                        funny: `#${topic.replace(/\s+/g, '')}Humor #${topic.replace(/\s+/g, '')}Fun #FridayFunnies #JokeOfTheDay #LaughOutLoud #ComicRelief #${topic.replace(/\s+/g, '')}Jokes`,
-                        inspirational: `#${topic.replace(/\s+/g, '')}Goals #Motivational${topic.replace(/\s+/g, '')} #InspirationDaily #AchieveGreatness #PositiveVibes #MindsetMatters #SuccessJourney`,
-                        urgent: `#${topic.replace(/\s+/g, '')}Alert #LimitedTimeOffer #DontMissOut #ActNow #LastChance #TimeSensitive #UrgentUpdate`
-                    },
-                    adcopy: {
-                        professional: `Drive exceptional results with our premium ${topic} solutions. Experience increased efficiency and ROI with our tailored approach. Schedule your consultation today.`,
-                        casual: `Hey there! Looking to upgrade your ${topic} game? We've got the perfect solution that's both effective and easy to use. Try it now!`,
-                        funny: `Tired of ${topic} problems that make you want to scream? 😱 Our solution will fix those issues so fast, you'll have time for an extra coffee break! ☕`,
-                        inspirational: `Transform your approach to ${topic} and unlock new possibilities. Join thousands of satisfied clients who have achieved remarkable success with our solution.`,
-                        urgent: `LAST CHANCE! Our special offer on ${topic} solutions ends soon. Don't miss this opportunity to revolutionize your approach at an incredible price!`
-                    },
-                    videoidea: {
-                        professional: `Create a tutorial video showcasing 5 professional strategies for enhancing your ${topic} approach. Include data visualization and case study results.`,
-                        casual: `Film a day-in-the-life vlog showing how ${topic} fits into your routine, with humorous bloopers and authentic moments. Ask viewers to share their experiences too!`,
-                        funny: `Produce a comedic sketch highlighting common ${topic} frustrations and how our solution turns those frustrating moments into wins. Use exaggerated reactions for humor.`,
-                        inspirational: `Create a montage video featuring success stories from people who transformed their ${topic} approach, with motivational narration and uplifting background music.`,
-                        urgent: `Film a countdown-style video highlighting the limited-time opportunity to improve ${topic}, with timer graphics and compelling reasons to act now.`
-                    }
-                };
-                
-                // Get the appropriate content based on inputs
-                let content = contentSamples[contentType][tone];
-                
-                // Add platform-specific advice
-                const platformTips = {
-                    Facebook: `Optimized for Facebook: Include a question to encourage comments and engagement.`,
-                    Instagram: `Optimized for Instagram: Use emojis and line breaks for readability.`,
-                    Twitter: `Optimized for Twitter: Keep it concise with room for retweet comments.`,
-                    LinkedIn: `Optimized for LinkedIn: Professional tone with industry-specific terminology.`,
-                    TikTok: `Optimized for TikTok: Trendy, engaging hooks to keep viewers watching.`,
-                    Pinterest: `Optimized for Pinterest: Descriptive with focus on visual elements.`
-                };
-                
-                content += `\n\n${platformTips[platform]}`;
-                
-                // Add additional info if provided
-                if (additionalInfo) {
-                    content += `\n\nCustomized based on your input: ${additionalInfo}`;
-                }
-                
-                return content;
-            }
-            
-            // Add fade-in animation to elements when they come into view
-            const fadeElements = document.querySelectorAll('.fade-in');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            fadeElements.forEach(element => {
-                element.style.opacity = 0;
-                element.style.transition = 'opacity 0.6s ease';
-                observer.observe(element);
             });
         });
     </script>
