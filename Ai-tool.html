@@ -3,26 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free AI-powered social media content creation tool. Generate posts, captions, and hashtags for all platforms without paying a penny.">
-    <meta name="keywords" content="AI social media tool, free content generator, social media marketing, AI content creation">
     <title>SocialAI Creator - Free AI-Powered Social Media Content Tool</title>
+    <meta name="description" content="Generate engaging social media content with AI. Free tool for posts, captions, and hashtags for all platforms.">
+    <meta name="keywords" content="AI social media tool, free content generator, social media marketing, AI content creation">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #6C63FF;
-            --primary-dark: #564FD8;
-            --secondary: #FF64B4;
-            --accent: #00D9DA;
-            --light: #F9F9FF;
-            --dark: #1A1A2E;
-            --success: #00C896;
-            --warning: #FF9E64;
-            --gray: #7B88A1;
-            --light-gray: #E6E9F0;
-            --gradient: linear-gradient(135deg, var(--primary), var(--accent));
-            --gradient-secondary: linear-gradient(135deg, var(--secondary), var(--warning));
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.12);
+            --secondary: #4A40E5;
+            --accent: #FF6584;
+            --success: #36D1DC;
+            --dark: #2A2A3C;
+            --light: #F8F9FC;
+            --gray: #7B7B8F;
+            --light-gray: #E4E4F1;
+            --gradient: linear-gradient(135deg, var(--primary), var(--success));
         }
         
         * {
@@ -48,14 +43,13 @@
         
         /* Header Styles */
         header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            color: var(--dark);
+            background: var(--dark);
+            color: white;
             padding: 1rem 0;
-            box-shadow: var(--shadow);
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
         
         .header-content {
@@ -66,17 +60,21 @@
         
         .logo {
             font-size: 1.8rem;
-            font-weight: 800;
+            font-weight: 700;
             display: flex;
             align-items: center;
+        }
+        
+        .logo span {
             background: var(--gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
         
-        .logo span {
-            color: var(--secondary);
+        .logo i {
+            margin-right: 10px;
+            color: var(--primary);
         }
         
         nav ul {
@@ -85,125 +83,64 @@
         }
         
         nav ul li {
-            margin-left: 1.8rem;
+            margin-left: 1.5rem;
         }
         
         nav ul li a {
-            color: var(--dark);
+            color: white;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
-            position: relative;
-            padding: 0.3rem 0;
-        }
-        
-        nav ul li a:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 3px;
-            bottom: 0;
-            left: 0;
-            background: var(--gradient);
-            border-radius: 10px;
-            transition: width 0.3s ease;
+            font-size: 1rem;
         }
         
         nav ul li a:hover {
-            color: var(--primary);
-        }
-        
-        nav ul li a:hover:after {
-            width: 100%;
-        }
-        
-        .nav-btn {
-            background: var(--gradient);
-            color: white;
-            border: none;
-            padding: 0.6rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.2);
-        }
-        
-        .nav-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
+            color: var(--success);
         }
         
         /* Hero Section */
         .hero {
             padding: 5rem 0;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%236C63FF" fill-opacity="0.1" d="M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,218.7C672,224,768,160,864,138.7C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>') no-repeat bottom;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%236C63FF" fill-opacity="0.1" d="M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,224C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>') no-repeat bottom;
             background-size: cover;
+            text-align: center;
             position: relative;
-            overflow: hidden;
         }
         
         .hero::before {
             content: '';
             position: absolute;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: rgba(108, 99, 255, 0.05);
-            top: -250px;
-            right: -250px;
-            z-index: 0;
-        }
-        
-        .hero::after {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: rgba(255, 100, 180, 0.05);
-            bottom: -200px;
-            left: -200px;
-            z-index: 0;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(108, 99, 255, 0.1) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 20%, rgba(54, 209, 220, 0.1) 0%, transparent 40%);
+            z-index: -1;
         }
         
         .hero h1 {
             font-size: 3.2rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             background: var(--gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            line-height: 1.2;
+            font-weight: 800;
         }
         
         .hero p {
             font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
             color: var(--gray);
-            margin-bottom: 2.5rem;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
         }
         
         .cta-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+            display: inline-block;
             background: var(--gradient);
             color: white;
-            padding: 1rem 2.2rem;
+            padding: 1rem 2.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
@@ -211,87 +148,24 @@
             border: none;
             cursor: pointer;
             font-size: 1.1rem;
-            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.25);
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
         }
         
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(108, 99, 255, 0.35);
-        }
-        
-        .cta-button.secondary {
-            background: white;
-            color: var(--primary);
-            border: 2px solid var(--light-gray);
-        }
-        
-        .cta-button.secondary:hover {
-            background: var(--light);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .cta-button i {
-            margin-right: 0.5rem;
-        }
-        
-        /* Stats Section */
-        .stats {
-            padding: 3rem 0;
-            background: white;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .stat-card {
-            text-align: center;
-            padding: 1.5rem;
-            border-radius: 12px;
-            background: var(--light);
-            transition: all 0.3s ease;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .stat-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .stat-number {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat-text {
-            color: var(--gray);
-            font-weight: 500;
+            box-shadow: 0 15px 25px rgba(108, 99, 255, 0.4);
         }
         
         /* Tool Section */
         .tool-section {
             padding: 5rem 0;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23F9F9FF" fill-opacity="1" d="M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,218.7C672,224,768,160,864,138.7C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
-            background-size: cover;
         }
         
         .tool-container {
             background: white;
             border-radius: 20px;
-            box-shadow: var(--shadow);
-            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
             margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
@@ -302,8 +176,8 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 5px;
-            height: 100%;
+            width: 100%;
+            height: 5px;
             background: var(--gradient);
         }
         
@@ -338,7 +212,7 @@
         }
         
         .input-group label i {
-            margin-right: 0.5rem;
+            margin-right: 10px;
             color: var(--primary);
         }
         
@@ -357,18 +231,18 @@
         .input-group textarea:focus,
         .input-group input:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
             outline: none;
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
         }
         
         .input-group textarea {
-            min-height: 140px;
+            min-height: 150px;
             resize: vertical;
         }
         
         .options-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 1rem;
             margin-bottom: 2rem;
         }
@@ -384,21 +258,21 @@
         }
         
         .option-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             border-color: var(--primary);
         }
         
         .option-card.active {
             background: var(--primary);
             color: white;
-            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.2);
-            transform: translateY(-3px);
+            border-color: var(--primary);
         }
         
         .option-card i {
             font-size: 1.8rem;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
+            display: block;
         }
         
         .generate-btn {
@@ -406,47 +280,57 @@
             color: white;
             border: none;
             padding: 1.2rem 2.5rem;
-            border-radius: 50px;
+            border-radius: 12px;
             font-size: 1.1rem;
-            font-weight: 600;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 2rem auto;
+            display: block;
+            width: 100%;
+            margin: 2rem 0;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.25);
+            font-weight: 600;
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
         }
         
         .generate-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(108, 99, 255, 0.35);
+            box-shadow: 0 15px 25px rgba(108, 99, 255, 0.4);
         }
         
-        .generate-btn i {
-            margin-right: 0.5rem;
+        .generate-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .loading i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .loading p {
+            color: var(--gray);
         }
         
         .results-container {
-            margin-top: 3rem;
+            margin-top: 2rem;
             display: none;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
         
         .results-container h3 {
             margin-bottom: 1.5rem;
-            color: var(--primary);
+            color: var(--secondary);
             display: flex;
             align-items: center;
         }
         
         .results-container h3 i {
-            margin-right: 0.5rem;
+            margin-right: 10px;
         }
         
         .result-card {
@@ -454,25 +338,34 @@
             border-radius: 15px;
             padding: 2rem;
             margin-bottom: 1.5rem;
+            position: relative;
             border-left: 5px solid var(--primary);
-            box-shadow: var(--shadow);
+        }
+        
+        .result-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
         }
         
         .result-actions {
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem;
             margin-top: 1.5rem;
         }
         
         .result-actions button {
-            padding: 0.8rem 1.5rem;
+            padding: 0.7rem 1.5rem;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 500;
             display: flex;
             align-items: center;
             transition: all 0.3s ease;
+        }
+        
+        .result-actions button i {
+            margin-right: 8px;
         }
         
         .copy-btn {
@@ -481,8 +374,7 @@
         }
         
         .copy-btn:hover {
-            background: #00b286;
-            transform: translateY(-2px);
+            background: #2ab4c7;
         }
         
         .download-btn {
@@ -491,27 +383,21 @@
         }
         
         .download-btn:hover {
-            background: #00c2c3;
-            transform: translateY(-2px);
-        }
-        
-        .result-actions button i {
-            margin-right: 0.5rem;
+            background: #ff4370;
         }
         
         /* Ad Spaces */
         .ad-space {
-            background: white;
-            border-radius: 15px;
+            background: var(--light);
+            border-radius: 12px;
             padding: 2rem;
             text-align: center;
             margin: 3rem 0;
-            min-height: 250px;
+            min-height: 150px;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 2px dashed var(--light-gray);
-            box-shadow: var(--shadow);
         }
         
         .ad-space p {
@@ -521,7 +407,7 @@
         /* Features Section */
         .features {
             padding: 5rem 0;
-            background: white;
+            background: linear-gradient(to bottom, var(--light), #f0f2ff);
         }
         
         .section-header {
@@ -549,32 +435,40 @@
         }
         
         .feature-card {
-            background: var(--light);
+            background: white;
             border-radius: 15px;
             padding: 2rem;
-            box-shadow: var(--shadow);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
         
-        .feature-card::before {
+        .feature-card::after {
             content: '';
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
-            width: 5px;
-            height: 100%;
+            width: 100%;
+            height: 5px;
             background: var(--gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
         }
         
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card:hover::after {
+            transform: scaleX(1);
         }
         
         .feature-icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1.5rem;
             background: var(--gradient);
             -webkit-background-clip: text;
@@ -585,104 +479,31 @@
         .feature-card h3 {
             margin-bottom: 1rem;
             color: var(--dark);
-        }
-        
-        .feature-card p {
-            color: var(--gray);
-        }
-        
-        /* Testimonials */
-        .testimonials {
-            padding: 5rem 0;
-            background: var(--light);
-        }
-        
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .testimonial-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-        }
-        
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-            position: relative;
-        }
-        
-        .testimonial-text::before {
-            content: """;
-            font-size: 4rem;
-            color: var(--primary);
-            opacity: 0.2;
-            position: absolute;
-            top: -1.5rem;
-            left: -1rem;
-            font-family: Arial, sans-serif;
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-        }
-        
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            margin-right: 1rem;
-        }
-        
-        .author-details h4 {
-            color: var(--dark);
-        }
-        
-        .author-details p {
-            color: var(--gray);
-            font-size: 0.9rem;
+            font-size: 1.4rem;
         }
         
         /* Footer */
         footer {
             background: var(--dark);
             color: white;
-            padding: 5rem 0 2rem;
+            padding: 4rem 0 1.5rem;
         }
         
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+            gap: 2.5rem;
             margin-bottom: 3rem;
         }
         
         .footer-column h3 {
             font-size: 1.3rem;
             margin-bottom: 1.5rem;
-            color: var(--accent);
+            color: var(--success);
         }
         
         .footer-column p {
-            color: #B8B8B8;
+            color: #ddd;
             margin-bottom: 1.5rem;
         }
         
@@ -695,30 +516,30 @@
         }
         
         .footer-column ul li a {
-            color: #B8B8B8;
+            color: #ddd;
             text-decoration: none;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
         }
         
-        .footer-column ul li a:hover {
-            color: var(--accent);
-        }
-        
         .footer-column ul li a i {
-            margin-right: 0.5rem;
-            font-size: 0.8rem;
+            margin-right: 10px;
+            font-size: 0.9rem;
         }
         
-        .social-links {
+        .footer-column ul li a:hover {
+            color: var(--success);
+        }
+        
+        .social-icons {
             display: flex;
             gap: 1rem;
             margin-top: 1.5rem;
         }
         
-        .social-links a {
-            display: flex;
+        .social-icons a {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             width: 40px;
@@ -729,7 +550,7 @@
             transition: all 0.3s ease;
         }
         
-        .social-links a:hover {
+        .social-icons a:hover {
             background: var(--primary);
             transform: translateY(-3px);
         }
@@ -738,7 +559,7 @@
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #888;
+            color: #aaa;
             font-size: 0.9rem;
         }
         
@@ -763,32 +584,73 @@
                 font-size: 2.5rem;
             }
             
-            .cta-buttons {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
             .options-container {
                 grid-template-columns: 1fr 1fr;
+            }
+            
+            .tool-header h2 {
+                font-size: 2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .options-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
             }
             
             .result-actions {
                 flex-direction: column;
             }
+            
+            .result-actions button {
+                width: 100%;
+                justify-content: center;
+            }
         }
         
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .tool-container {
-                padding: 2rem 1.5rem;
-            }
-            
-            .options-container {
-                grid-template-columns: 1fr;
-            }
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            background: var(--success);
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .notification i {
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -798,15 +660,14 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <i class="fas fa-brain"></i> SocialAI Creator
+                    <i class="fas fa-brain"></i>Social<span>AI</span> Creator
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="#tool">AI Tool</a></li>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#testimonials">Testimonials</a></li>
-                        <li><a href="#about">About</a></li>
-                        <button class="nav-btn">Get Started</button>
+                        <li><a href="#tool"><i class="fas fa-magic"></i> AI Tool</a></li>
+                        <li><a href="#features"><i class="fas fa-star"></i> Features</a></li>
+                        <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -816,50 +677,9 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1>Create Stunning Social Media Content in Seconds</h1>
-                <p>Generate engaging posts, captions, and hashtags for all social platforms with our powerful AI. No payments, no subscriptions - completely free forever!</p>
-                <div class="cta-buttons">
-                    <a href="#tool" class="cta-button"><i class="fas fa-wand-magic-sparkles"></i> Start Creating Now</a>
-                    <a href="#features" class="cta-button secondary"><i class="fas fa-play-circle"></i> Watch Demo</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="stat-number">128,950+</div>
-                    <div class="stat-text">Happy Users</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <div class="stat-number">4.5M+</div>
-                    <div class="stat-text">Posts Generated</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <div class="stat-number">15+</div>
-                    <div class="stat-text">Platforms Supported</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <div class="stat-number">98.7%</div>
-                    <div class="stat-text">Satisfaction Rate</div>
-                </div>
-            </div>
+            <h1>Create Stunning Social Media Content</h1>
+            <p>Generate engaging posts, captions, and hashtags for all social platforms in seconds with our advanced AI technology. Completely free!</p>
+            <a href="#tool" class="cta-button">Start Creating Now <i class="fas fa-arrow-right"></i></a>
         </div>
     </section>
 
@@ -878,16 +698,16 @@
                 <p>Create optimized social media content in seconds with our powerful AI</p>
             </div>
             
-            <div class="tool-container">
+            <div class="tool-container fade-in">
                 <div class="input-group">
                     <label for="platform"><i class="fas fa-th-large"></i> Select Social Media Platform</label>
                     <select id="platform">
-                        <option value="facebook">Facebook</option>
-                        <option value="instagram">Instagram</option>
-                        <option value="twitter">Twitter/X</option>
-                        <option value="linkedin">LinkedIn</option>
-                        <option value="tiktok">TikTok</option>
-                        <option value="pinterest">Pinterest</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="Instagram">Instagram</option>
+                        <option value="Twitter">Twitter/X</option>
+                        <option value="LinkedIn">LinkedIn</option>
+                        <option value="TikTok">TikTok</option>
+                        <option value="Pinterest">Pinterest</option>
                     </select>
                 </div>
                 
@@ -907,27 +727,27 @@
                 </div>
                 
                 <div class="input-group">
-                    <label for="tone"><i class="fas fa-music"></i> Select Tone</label>
+                    <label for="tone"><i class="fas fa-palette"></i> Select Tone</label>
                     <div class="options-container">
                         <div class="option-card active" data-tone="professional">
                             <i class="fas fa-briefcase"></i>
-                            <div>Professional</div>
+                            <span>Professional</span>
                         </div>
                         <div class="option-card" data-tone="casual">
-                            <i class="fas fa-comments"></i>
-                            <div>Casual</div>
+                            <i class="fas fa-comment"></i>
+                            <span>Casual</span>
                         </div>
                         <div class="option-card" data-tone="funny">
-                            <i class="fas fa-laugh-squint"></i>
-                            <div>Funny</div>
+                            <i class="fas fa-laugh"></i>
+                            <span>Funny</span>
                         </div>
                         <div class="option-card" data-tone="inspirational">
                             <i class="fas fa-fire"></i>
-                            <div>Inspirational</div>
+                            <span>Inspirational</span>
                         </div>
                         <div class="option-card" data-tone="urgent">
                             <i class="fas fa-bolt"></i>
-                            <div>Urgent</div>
+                            <span>Urgent</span>
                         </div>
                     </div>
                 </div>
@@ -937,12 +757,17 @@
                     <textarea id="additionalInfo" placeholder="Any specific details, keywords, or context for the AI..."></textarea>
                 </div>
                 
-                <button id="generateBtn" class="generate-btn"><i class="fas fa-gears"></i> Generate Content</button>
+                <button id="generateBtn" class="generate-btn"><i class="fas fa-wand-magic-sparkles"></i> Generate Content</button>
+                
+                <div class="loading" id="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>AI is generating your content... This may take a few seconds</p>
+                </div>
                 
                 <div class="results-container" id="resultsContainer">
                     <h3><i class="fas fa-rocket"></i> Generated Content</h3>
                     <div class="result-card">
-                        <div id="generatedContent"></div>
+                        <div class="result-content" id="generatedContent"></div>
                         <div class="result-actions">
                             <button class="copy-btn" id="copyBtn"><i class="fas fa-copy"></i> Copy Text</button>
                             <button class="download-btn" id="downloadBtn"><i class="fas fa-download"></i> Download as Text</button>
@@ -969,91 +794,40 @@
             </div>
             
             <div class="features-grid">
-                <div class="feature-card">
+                <div class="feature-card fade-in">
                     <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
                     <h3>Multi-Platform Support</h3>
-                    <p>Generate optimized content for Facebook, Instagram, Twitter, LinkedIn, TikTok, and more with platform-specific formatting.</p>
+                    <p>Generate optimized content for all major social platforms with platform-specific formatting and best practices.</p>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card fade-in">
                     <div class="feature-icon"><i class="fas fa-sliders-h"></i></div>
                     <h3>Tone Customization</h3>
-                    <p>Choose from professional, casual, funny, inspirational, or urgent tones to match your brand voice and audience preferences.</p>
+                    <p>Choose from professional, casual, funny, inspirational, or urgent tones to match your brand voice.</p>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card fade-in">
                     <div class="feature-icon"><i class="fas fa-bolt"></i></div>
                     <h3>Instant Generation</h3>
-                    <p>Create high-quality social media content in seconds, saving you hours of brainstorming, writing, and editing time.</p>
+                    <p>Create high-quality social media content in seconds, saving you hours of brainstorming and writing.</p>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card fade-in">
                     <div class="feature-icon"><i class="fas fa-download"></i></div>
                     <h3>Export Options</h3>
-                    <p>Copy content directly to clipboard or download as text files for easy access, organization, and scheduling.</p>
+                    <p>Copy content directly to clipboard or download as text files for easy access and organization.</p>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card fade-in">
                     <div class="feature-icon"><i class="fas fa-hashtag"></i></div>
                     <h3>Hashtag Suggestions</h3>
-                    <p>Get relevant, trending hashtags to increase your content's visibility, engagement, and reach across platforms.</p>
+                    <p>Get relevant, trending hashtags to increase your content's visibility and engagement.</p>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card fade-in">
                     <div class="feature-icon"><i class="fas fa-gift"></i></div>
                     <h3>Completely Free</h3>
-                    <p>No hidden fees, no subscriptions, no paywalls. Access all features without spending a penny now or ever.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <h2>What Users Say</h2>
-                <p>Join thousands of satisfied content creators and marketers</p>
-            </div>
-            
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        This tool has completely transformed my social media strategy. I've cut my content creation time by 70% while improving engagement!
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">SD</div>
-                        <div class="author-details">
-                            <h4>Sarah Daniels</h4>
-                            <p>Social Media Manager</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        As a small business owner, I don't have a big budget for marketing. This free tool has been an absolute game-changer for my online presence.
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">MJ</div>
-                        <div class="author-details">
-                            <h4>Michael Johnson</h4>
-                            <p>Small Business Owner</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        The quality of content generated rivals expensive tools I've used. The fact that it's completely free is mind-blowing. Highly recommend!
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">AP</div>
-                        <div class="author-details">
-                            <h4>Amanda Peters</h4>
-                            <p>Content Creator</p>
-                        </div>
-                    </div>
+                    <p>No hidden fees, no subscriptions, no paywalls. Access all features without spending a penny.</p>
                 </div>
             </div>
         </div>
@@ -1066,7 +840,7 @@
                 <div class="footer-column">
                     <h3>SocialAI Creator</h3>
                     <p>The completely free AI-powered tool for creating engaging social media content across all platforms.</p>
-                    <div class="social-links">
+                    <div class="social-icons">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
@@ -1077,30 +851,19 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#tool"><i class="fas fa-arrow-right"></i> AI Content Tool</a></li>
-                        <li><a href="#features"><i class="fas fa-arrow-right"></i> Features</a></li>
-                        <li><a href="#testimonials"><i class="fas fa-arrow-right"></i> Testimonials</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> Blog</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Support</h3>
-                    <ul>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> Help Center</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> FAQ</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> Contact Us</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> Feedback</a></li>
+                        <li><a href="#tool"><i class="fas fa-chevron-right"></i> AI Content Tool</a></li>
+                        <li><a href="#features"><i class="fas fa-chevron-right"></i> Features</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
                     <h3>Legal</h3>
                     <ul>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> Privacy Policy</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> Terms of Service</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> Cookie Policy</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> Data Processing</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Cookie Policy</a></li>
                     </ul>
                 </div>
             </div>
@@ -1111,63 +874,125 @@
         </div>
     </footer>
 
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText"></span>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // API Key (in a real application, this should be handled securely on the backend)
+            const API_KEY = "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";
+            const API_URL = "https://api.perplexity.ai/chat/completions";
+            
+            // Elements
+            const generateBtn = document.getElementById('generateBtn');
+            const loadingElement = document.getElementById('loading');
+            const resultsContainer = document.getElementById('resultsContainer');
+            const generatedContent = document.getElementById('generatedContent');
+            const copyBtn = document.getElementById('copyBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notificationText');
+            
             // Tone selection
             const toneOptions = document.querySelectorAll('.option-card');
+            let selectedTone = 'professional';
+            
             toneOptions.forEach(option => {
                 option.addEventListener('click', function() {
                     toneOptions.forEach(opt => opt.classList.remove('active'));
                     this.classList.add('active');
+                    selectedTone = this.getAttribute('data-tone');
                 });
             });
             
             // Generate button functionality
-            const generateBtn = document.getElementById('generateBtn');
-            const resultsContainer = document.getElementById('resultsContainer');
-            const generatedContent = document.getElementById('generatedContent');
-            
-            generateBtn.addEventListener('click', function() {
+            generateBtn.addEventListener('click', async function() {
                 // Get form values
                 const platform = document.getElementById('platform').value;
                 const contentType = document.getElementById('contentType').value;
                 const topic = document.getElementById('topic').value;
-                const activeTone = document.querySelector('.option-card.active').getAttribute('data-tone');
                 const additionalInfo = document.getElementById('additionalInfo').value;
                 
                 // Validate input
                 if (!topic.trim()) {
-                    alert('Please enter a topic or keyword to generate content.');
+                    showNotification('Please enter a topic or keyword to generate content.', 'error');
                     return;
                 }
                 
                 // Show loading state
-                generateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
                 generateBtn.disabled = true;
+                loadingElement.style.display = 'block';
+                resultsContainer.style.display = 'none';
                 
-                // Simulate AI processing (in a real app, this would be an API call)
-                setTimeout(() => {
-                    // Generate content based on inputs
-                    const content = generateAIContent(platform, contentType, topic, activeTone, additionalInfo);
+                try {
+                    // Prepare the prompt for the AI
+                    const prompt = `Create ${contentType} for ${platform} with a ${selectedTone} tone about ${topic}. ${additionalInfo ? 'Additional context: ' + additionalInfo : ''}`;
+                    
+                    // Call the Perplexity API
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${API_KEY}`
+                        },
+                        body: JSON.stringify({
+                            model: 'sonar',
+                            messages: [
+                                {
+                                    role: 'system',
+                                    content: 'You are an expert social media content creator. Generate engaging, platform-appropriate content based on user requests.'
+                                },
+                                {
+                                    role: 'user',
+                                    content: prompt
+                                }
+                            ],
+                            temperature: 0.7,
+                            max_tokens: 1000
+                        })
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error(`API error: ${response.status}`);
+                    }
+                    
+                    const data = await response.json();
+                    
+                    // Extract the generated content
+                    const aiContent = data.choices[0].message.content;
                     
                     // Display results
-                    generatedContent.innerHTML = content;
+                    generatedContent.innerHTML = formatContent(aiContent);
                     resultsContainer.style.display = 'block';
-                    
-                    // Reset button
-                    generateBtn.innerHTML = '<i class="fas fa-gears"></i> Generate Content';
-                    generateBtn.disabled = false;
                     
                     // Scroll to results
                     resultsContainer.scrollIntoView({ behavior: 'smooth' });
-                }, 2000);
+                    
+                    showNotification('Content generated successfully!', 'success');
+                    
+                } catch (error) {
+                    console.error('Error calling API:', error);
+                    
+                    // Fallback to simulated content if API fails
+                    generatedContent.innerHTML = formatContent(generateFallbackContent(platform, contentType, topic, selectedTone, additionalInfo));
+                    resultsContainer.style.display = 'block';
+                    
+                    showNotification('Generated content (offline mode). API connection failed.', 'warning');
+                } finally {
+                    // Reset button and hide loading
+                    generateBtn.disabled = false;
+                    loadingElement.style.display = 'none';
+                }
             });
             
             // Copy functionality
-            const copyBtn = document.getElementById('copyBtn');
             copyBtn.addEventListener('click', function() {
                 const textToCopy = generatedContent.textContent;
                 navigator.clipboard.writeText(textToCopy).then(() => {
+                    showNotification('Content copied to clipboard!', 'success');
                     copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
                     setTimeout(() => {
                         copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy Text';
@@ -1176,7 +1001,6 @@
             });
             
             // Download functionality
-            const downloadBtn = document.getElementById('downloadBtn');
             downloadBtn.addEventListener('click', function() {
                 const textToDownload = generatedContent.textContent;
                 const blob = new Blob([textToDownload], { type: 'text/plain' });
@@ -1190,39 +1014,68 @@
                     document.body.removeChild(a);
                     URL.revokeObjectURL(url);
                 }, 0);
+                
+                showNotification('Content downloaded successfully!', 'success');
             });
             
-            // Function to generate sample content (simulates AI)
-            function generateAIContent(platform, contentType, topic, tone, additionalInfo) {
+            // Format content with line breaks and styling
+            function formatContent(content) {
+                // Convert line breaks to HTML
+                return content.replace(/\n/g, '<br>');
+            }
+            
+            // Show notification
+            function showNotification(message, type) {
+                notificationText.textContent = message;
+                
+                // Set color based on type
+                if (type === 'success') {
+                    notification.style.background = 'var(--success)';
+                } else if (type === 'error') {
+                    notification.style.background = 'var(--accent)';
+                } else if (type === 'warning') {
+                    notification.style.background = '#ff9800';
+                }
+                
+                notification.classList.add('show');
+                
+                // Hide after 3 seconds
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }
+            
+            // Fallback content generation if API fails
+            function generateFallbackContent(platform, contentType, topic, tone, additionalInfo) {
                 // Sample content templates
                 const contentSamples = {
                     post: {
-                        professional: `<p>Elevate your ${topic} strategy with our latest insights. Discover how to maximize engagement and drive results with data-driven approaches.</p><p>Key benefits include:<br>• Increased visibility<br>• Higher conversion rates<br>• Improved audience targeting</p><p>#${topic.replace(/\s+/g, '')} #SocialMediaStrategy #DigitalMarketing</p>`,
-                        casual: `<p>Hey everyone! 👋 Just wanted to share some cool thoughts about ${topic}. What's your take on this? Let's chat in the comments! 😊</p><p>I've found that focusing on authentic engagement really makes a difference. How about you?</p><p>#${topic.replace(/\s+/g, '')} #CommunityChat #LetsTalk</p>`,
-                        funny: `<p>Why did the ${topic} cross the road? To get to the other side of your feed! 😂</p><p>Don't mind me, just here to bring some ${topic} humor to your day! Remember, laughter is the best medicine (except for actual medicine, please take that too).</p><p>#${topic.replace(/\s+/g, '')}Funny #FridayFunnies #JokeOfTheDay</p>`,
-                        inspirational: `<p>Your journey with ${topic} begins with a single step. Today, challenge yourself to new heights and discover what you're truly capable of. ✨</p><p>"The only limit to your impact is your imagination and commitment." - Tony Robbins</p><p>#${topic.replace(/\s+/g, '')}Goals #Motivation #SuccessJourney</p>`,
-                        urgent: `<p>🚨 LAST CHANCE! Our special offer on ${topic} solutions ends soon. Don't miss this opportunity to revolutionize your approach at an incredible price!</p><p>This exclusive deal includes:<br>• Premium features<br>• Priority support<br>• Bonus resources</p><p>#${topic.replace(/\s+/g, '')}Alert #LimitedTimeOffer #ActNow</p>`
+                        professional: `Elevate your ${topic} strategy with our latest insights. Discover how to maximize engagement and drive results with data-driven approaches.\n\n#${topic.replace(/\s+/g, '')} #SocialMediaStrategy`,
+                        casual: `Hey everyone! 👋 Just wanted to share some cool thoughts about ${topic}. What's your take on this? Let's chat in the comments! 😊\n\n#${topic.replace(/\s+/g, '')}`,
+                        funny: `Why did the ${topic} cross the road? To get to the other side of your feed! 😂 Don't mind me, just here to bring some ${topic} humor to your day!\n\n#${topic.replace(/\s+/g, '')}Funny`,
+                        inspirational: `Your journey with ${topic} begins with a single step. Today, challenge yourself to new heights and discover what you're truly capable of. ✨\n\n#${topic.replace(/\s+/g, '')}Goals #Motivation`,
+                        urgent: `🚨 Last chance to upgrade your ${topic} strategy! Don't miss out on these game-changing insights that are transforming approaches everywhere.\n\n#${topic.replace(/\s+/g, '')} #LimitedTime`
                     },
                     hashtags: {
-                        professional: `<p>Top performing hashtags for ${topic}:</p><p>#${topic.replace(/\s+/g, '')} #${topic.replace(/\s+/g, '')}Strategy #ProfessionalTips #IndustryInsights #BusinessGrowth #MarketingTips #SuccessStrategies #Leadership #Innovation #DigitalTransformation</p><p>Mix - 5-7 popular hashtags with 3-5 niche ones for best results.</p>`,
-                        casual: `<p>Trending hashtags for ${topic}:</p><p>#${topic.replace(/\s+/g, '')} #Daily${topic.replace(/\s+/g, '')} #Fun${topic.replace(/\s+/g, '')} #ShareYourThoughts #CommunityChat #LetsTalk${topic.replace(/\s+/g, '')} #LifeHacks #TipsAndTricks #LearnSomethingNew</p><p>Pro tip: Engage with other posts using these hashtags to increase your visibility!</p>`,
-                        funny: `<p>Humorous hashtags for ${topic}:</p><p>#${topic.replace(/\s+/g, '')}Humor #${topic.replace(/\s+/g, '')}Fun #FridayFunnies #JokeOfTheDay #LaughOutLoud #ComicRelief #${topic.replace(/\s+/g, '')}Jokes #FunnyStuff #Memes #LaughterTheBestMedicine</p><p>Remember: Humor increases engagement by 33% on average! 😂</p>`,
-                        inspirational: `<p>Motivational hashtags for ${topic}:</p><p>#${topic.replace(/\s+/g, '')}Goals #Motivational${topic.replace(/\s+/g, '')} #InspirationDaily #AchieveGreatness #PositiveVibes #MindsetMatters #SuccessJourney #DreamBig #GoalCrusher #BeInspired</p><p>Inspirational content gets shared 3x more than regular content! ✨</p>`,
-                        urgent: `<p>Urgent/action-oriented hashtags for ${topic}:</p><p>#${topic.replace(/\s+/g, '')}Alert #LimitedTimeOffer #DontMissOut #ActNow #LastChance #TimeSensitive #UrgentUpdate #FlashSale #LimitedAvailability #GoingFast</p><p>Urgent posts create a 27% higher click-through rate! ⏰</p>`
+                        professional: `#${topic.replace(/\s+/g, '')} #${topic.replace(/\s+/g, '')}Strategy #ProfessionalTips #IndustryInsights #BusinessGrowth #MarketingTips #SuccessStrategies`,
+                        casual: `#${topic.replace(/\s+/g, '')} #Daily${topic.replace(/\s+/g, '')} #Fun${topic.replace(/\s+/g, '')} #ShareYourThoughts #CommunityChat #LetsTalk${topic.replace(/\s+/g, '')}`,
+                        funny: `#${topic.replace(/\s+/g, '')}Humor #${topic.replace(/\s+/g, '')}Fun #FridayFunnies #JokeOfTheDay #LaughOutLoud #ComicRelief #${topic.replace(/\s+/g, '')}Jokes`,
+                        inspirational: `#${topic.replace(/\s+/g, '')}Goals #Motivational${topic.replace(/\s+/g, '')} #InspirationDaily #AchieveGreatness #PositiveVibes #MindsetMatters #SuccessJourney`,
+                        urgent: `#${topic.replace(/\s+/g, '')}Alert #LimitedTimeOffer #DontMissOut #ActNow #LastChance #TimeSensitive #UrgentUpdate`
                     },
                     adcopy: {
-                        professional: `<p>Drive exceptional results with our premium ${topic} solutions. Experience increased efficiency and ROI with our tailored approach.</p><p>Key features:<br>• Advanced analytics dashboard<br>• Customizable templates<br>• Expert support team</p><p>Schedule your consultation today and receive a complimentary audit worth $500!</p><p>👉 [Call to Action Button] Learn More</p>`,
-                        casual: `<p>Hey there! Looking to upgrade your ${topic} game? We've got the perfect solution that's both effective and easy to use.</p><p>Our users report:<br>• 45% time savings<br>• 2.3x more engagement<br>• 60% higher conversion rates</p><p>Try it now - no credit card required!</p><p>👉 [Call to Action Button] Get Started</p>`,
-                        funny: `<p>Tired of ${topic} problems that make you want to scream? 😱 Our solution will fix those issues so fast, you'll have time for an extra coffee break! ☕</p><p>Seriously though, we help you:<br>• Save 5+ hours weekly<br>• Reduce stress levels<br>• Impress your boss/clients</p><p>👉 [Call to Action Button] Try It Free</p>`,
-                        inspirational: `<p>Transform your approach to ${topic} and unlock new possibilities. Join thousands of satisfied clients who have achieved remarkable success with our solution.</p><p>"This tool completely changed how I approach ${topic}. I've doubled my results in half the time!" - Sarah K., Marketing Director</p><p>👉 [Call to Action Button] Start Your Journey</p>`,
-                        urgent: `<p>LAST CHANCE! Our special offer on ${topic} solutions ends soon. Don't miss this opportunity to revolutionize your approach at an incredible price!</p><p>This exclusive deal includes:<br>• All premium features<br>• Priority 24/7 support<br>• $1000 in bonus resources</p><p>Offer expires in 48 hours! ⏰</p><p>👉 [Call to Action Button] Claim Discount Now</p>`
+                        professional: `Drive exceptional results with our premium ${topic} solutions. Experience increased efficiency and ROI with our tailored approach. Schedule your consultation today.`,
+                        casual: `Hey there! Looking to upgrade your ${topic} game? We've got the perfect solution that's both effective and easy to use. Try it now!`,
+                        funny: `Tired of ${topic} problems that make you want to scream? 😱 Our solution will fix those issues so fast, you'll have time for an extra coffee break! ☕`,
+                        inspirational: `Transform your approach to ${topic} and unlock new possibilities. Join thousands of satisfied clients who have achieved remarkable success with our solution.`,
+                        urgent: `LAST CHANCE! Our special offer on ${topic} solutions ends soon. Don't miss this opportunity to revolutionize your approach at an incredible price!`
                     },
                     videoidea: {
-                        professional: `<p>Create a tutorial video showcasing 5 professional strategies for enhancing your ${topic} approach.</p><p>Video outline:<br>1. Introduction to the problem (0:00-0:30)<br>2. Strategy 1 explanation with examples (0:30-2:00)<br>3. Strategy 2 demonstration (2:00-3:30)<br>4. Strategy 3 case study (3:30-5:00)<br>5. Strategies 4-5 quick tips (5:00-6:00)<br>6. Conclusion and call to action (6:00-6:30)</p><p>Include data visualization, screen recordings, and case study results for credibility.</p>`,
-                        casual: `<p>Film a day-in-the-life vlog showing how ${topic} fits into your routine.</p><p>Video concept:<br>• Start with morning routine dealing with ${topic} challenges<br>• Show your solution in action throughout the day<br>• Include humorous bloopers and authentic moments<br>• Ask viewers to share their experiences in comments</p><p>Props needed: Phone camera, natural lighting, relatable setting.</p>`,
-                        funny: `<p>Produce a comedic sketch highlighting common ${topic} frustrations and how our solution turns those frustrating moments into wins.</p><p>Script ideas:<br>• Before/after scenario showing the struggle vs. the solution<br>• Exaggerated reactions to common problems<br>• humorous metaphors for the frustration (like trying to fold a fitted sheet)<br>• Punchline showing how easy it is with our tool</p><p>Use upbeat music and quick cuts to maintain energy.</p>`,
-                        inspirational: `<p>Create a montage video featuring success stories from people who transformed their ${topic} approach.</p><p>Video structure:<br>• Open with dramatic music and quick cuts of frustrated people<br>• Transition to hopeful music and interviews with success stories<br>• Show transformation journey with before/after metrics<br>• End with powerful call to action</p><p>Include motivational narration and uplifting background music.</p>`,
-                        urgent: `<p>Film a countdown-style video highlighting the limited-time opportunity to improve ${topic}.</p><p>Production plan:<br>• Use timer graphics throughout the video<br>• Show benefits that will disappear after the deadline<br>• Include testimonials from people who benefited<br>• Display actual countdown timer in corner of screen</p><p>Create sense of urgency with quick cuts, tense music, and compelling reasons to act now.</p>`
+                        professional: `Create a tutorial video showcasing 5 professional strategies for enhancing your ${topic} approach. Include data visualization and case study results.`,
+                        casual: `Film a day-in-the-life vlog showing how ${topic} fits into your routine, with humorous bloopers and authentic moments. Ask viewers to share their experiences too!`,
+                        funny: `Produce a comedic sketch highlighting common ${topic} frustrations and how our solution turns those frustrating moments into wins. Use exaggerated reactions for humor.`,
+                        inspirational: `Create a montage video featuring success stories from people who transformed their ${topic} approach, with motivational narration and uplifting background music.`,
+                        urgent: `Film a countdown-style video highlighting the limited-time opportunity to improve ${topic}, with timer graphics and compelling reasons to act now.`
                     }
                 };
                 
@@ -1231,23 +1084,41 @@
                 
                 // Add platform-specific advice
                 const platformTips = {
-                    facebook: `<div class="platform-tip"><strong>Facebook Tip:</strong> Ask a question to encourage comments and engagement. Use 2-3 emojis maximum.</div>`,
-                    instagram: `<div class="platform-tip"><strong>Instagram Tip:</strong> Use emojis and line breaks for readability. Include 8-15 relevant hashtags in the first comment.</div>`,
-                    twitter: `<div class="platform-tip"><strong>Twitter Tip:</strong> Keep it concise with room for retweet comments. Use 1-2 hashtags maximum.</div>`,
-                    linkedin: `<div class="platform-tip"><strong>LinkedIn Tip:</strong> Professional tone with industry-specific terminology. Focus on value-added content.</div>`,
-                    tiktok: `<div class="platform-tip"><strong>TikTok Tip:</strong> Trendy, engaging hooks to keep viewers watching. Use popular audio and effects.</div>`,
-                    pinterest: `<div class="platform-tip"><strong>Pinterest Tip:</strong> Descriptive with focus on visual elements. Use keywords in the description.</div>`
+                    Facebook: `Optimized for Facebook: Include a question to encourage comments and engagement.`,
+                    Instagram: `Optimized for Instagram: Use emojis and line breaks for readability.`,
+                    Twitter: `Optimized for Twitter: Keep it concise with room for retweet comments.`,
+                    LinkedIn: `Optimized for LinkedIn: Professional tone with industry-specific terminology.`,
+                    TikTok: `Optimized for TikTok: Trendy, engaging hooks to keep viewers watching.`,
+                    Pinterest: `Optimized for Pinterest: Descriptive with focus on visual elements.`
                 };
                 
-                content += `<br><br>${platformTips[platform]}`;
+                content += `\n\n${platformTips[platform]}`;
                 
                 // Add additional info if provided
                 if (additionalInfo) {
-                    content += `<br><div class="custom-info"><strong>Customized based on your input:</strong> ${additionalInfo}</div>`;
+                    content += `\n\nCustomized based on your input: ${additionalInfo}`;
                 }
                 
                 return content;
             }
+            
+            // Add fade-in animation to elements when they come into view
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(element => {
+                element.style.opacity = 0;
+                element.style.transition = 'opacity 0.6s ease';
+                observer.observe(element);
+            });
         });
     </script>
 </body>
