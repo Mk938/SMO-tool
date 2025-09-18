@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free AI-powered social media content creation tool. Generate posts, captions, and hashtags for all platforms without paying a penny.">
-    <meta name="keywords" content="AI social media tool, free content generator, social media marketing, AI content creation">
-    <title>SocialAI Creator - Free AI-Powered Social Media Content Tool</title>
+    <meta name="description" content="Create stunning social media content with AI. Generate posts, carousels, and video ideas for all platforms.">
+    <meta name="keywords" content="AI social media tool, content generator, social media marketing, AI content creation">
+    <title>Social Tools Pro - AI Content Creator</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         :root {
             --primary: #6C63FF;
@@ -70,10 +71,19 @@
             font-weight: 700;
             display: flex;
             align-items: center;
+            color: white;
         }
         
-        .logo span {
-            color: var(--accent);
+        .logo-img {
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            font-size: 24px;
+            background: linear-gradient(135deg, #FF6B8B, #6C63FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 5px;
+            border: 2px solid #fff;
+            border-radius: 8px;
         }
         
         nav ul {
@@ -366,6 +376,29 @@
             border-radius: 15px 0 0 15px;
         }
         
+        .result-content {
+            line-height: 1.8;
+        }
+        
+        .result-content ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .result-content li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .result-content li:before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
         .result-actions {
             display: flex;
             gap: 0.8rem;
@@ -599,6 +632,16 @@
             100% { transform: translate(24px, 0); }
         }
         
+        /* Sub Option Styles */
+        .sub-option {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--light);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+        
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero h1 {
@@ -645,6 +688,15 @@
             .feature-card {
                 padding: 1.5rem;
             }
+            
+            .result-actions {
+                flex-direction: column;
+            }
+            
+            .result-actions button {
+                width: 100%;
+                justify-content: center;
+            }
         }
         
         @media (max-width: 576px) {
@@ -658,15 +710,6 @@
             
             .options-container {
                 grid-template-columns: 1fr;
-            }
-            
-            .result-actions {
-                flex-direction: column;
-            }
-            
-            .result-actions button {
-                width: 100%;
-                justify-content: center;
             }
             
             .feature-card {
@@ -685,7 +728,7 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <i class="fas fa-brain"></i> Social<span>AI</span> Creator
+                    <div class="logo-img">SOCIAL<br>TOOLS<br>PRO</div>
                 </div>
                 <nav>
                     <ul>
@@ -703,7 +746,7 @@
     <section class="hero">
         <div class="container">
             <h1>Create Stunning Social Media Content</h1>
-            <p>Generate engaging posts, captions, and hashtags for all social platforms in seconds. No payments, no subscriptions - completely free!</p>
+            <p>Generate engaging posts, carousels, and video ideas for all social platforms in seconds. No payments, no subscriptions - completely free!</p>
             <a href="#tool" class="cta-button"><i class="fas fa-wand-magic-sparkles"></i> Start Creating Now</a>
         </div>
     </section>
@@ -740,11 +783,19 @@
                 <div class="input-group">
                     <label for="contentType"><i class="fas fa-pen-fancy"></i> Content Type</label>
                     <select id="contentType">
-                        <option value="post">Post/Caption</option>
-                        <option value="hashtags">Hashtags</option>
-                        <option value="adcopy">Ad Copy</option>
-                        <option value="videoidea">Video Idea</option>
+                        <option value="static">Static post / Carousel idea</option>
+                        <option value="video">Video idea</option>
                     </select>
+                </div>
+                
+                <div id="staticSubOption" class="sub-option">
+                    <div class="input-group">
+                        <label for="postType"><i class="fas fa-images"></i> Select Post Type</label>
+                        <select id="postType">
+                            <option value="static">Static Post</option>
+                            <option value="carousel">Carousel Post</option>
+                        </select>
+                    </div>
                 </div>
                 
                 <div class="input-group">
@@ -818,10 +869,10 @@
                 <div class="results-container" id="resultsContainer">
                     <h3><i class="fas fa-rocket"></i> Generated Content</h3>
                     <div class="result-card">
-                        <div id="generatedContent"></div>
+                        <div id="generatedContent" class="result-content"></div>
                         <div class="result-actions">
                             <button class="copy-btn" id="copyBtn"><i class="fas fa-copy"></i> Copy Text</button>
-                            <button class="download-btn" id="downloadBtn"><i class="fas fa-download"></i> Download as Text</button>
+                            <button class="download-btn" id="downloadBtn"><i class="fas fa-download"></i> Download as PDF</button>
                         </div>
                     </div>
                 </div>
@@ -867,7 +918,7 @@
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-download"></i></div>
                     <h3>Export Options</h3>
-                    <p>Copy content directly to clipboard or download as text files for easy access and organization.</p>
+                    <p>Copy content directly to clipboard or download as PDF files for easy access and organization.</p>
                 </div>
                 
                 <div class="feature-card">
@@ -890,7 +941,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>SocialAI Creator</h3>
+                    <h3>Social Tools Pro</h3>
                     <p>The completely free AI-powered tool for creating engaging social media content across all platforms.</p>
                 </div>
                 
@@ -915,7 +966,7 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 SocialAI Creator. All rights reserved. This is a free tool with no associated costs.</p>
+                <p>&copy; 2023 Social Tools Pro. All rights reserved. This is a free tool with no associated costs.</p>
             </div>
         </div>
     </footer>
@@ -924,6 +975,18 @@
         document.addEventListener('DOMContentLoaded', function() {
             // API Key (not visible to users)
             const API_KEY = "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";
+            
+            // Show/hide sub-options based on content type
+            const contentTypeSelect = document.getElementById('contentType');
+            const staticSubOption = document.getElementById('staticSubOption');
+            
+            contentTypeSelect.addEventListener('change', function() {
+                if (this.value === 'static') {
+                    staticSubOption.style.display = 'block';
+                } else {
+                    staticSubOption.style.display = 'none';
+                }
+            });
             
             // Tone selection
             const toneOptions = document.querySelectorAll('.option-card');
@@ -944,6 +1007,7 @@
                 // Get form values
                 const platform = document.getElementById('platform').value;
                 const contentType = document.getElementById('contentType').value;
+                const postType = contentType === 'static' ? document.getElementById('postType').value : null;
                 const topic = document.getElementById('topic').value;
                 const activeTone = document.querySelector('.option-card.active').getAttribute('data-tone');
                 const additionalInfo = document.getElementById('additionalInfo').value;
@@ -961,7 +1025,7 @@
                 
                 try {
                     // Generate content using Perplexity API
-                    const content = await generateContentWithAI(platform, contentType, topic, activeTone, additionalInfo);
+                    const content = await generateContentWithAI(platform, contentType, postType, topic, activeTone, additionalInfo);
                     
                     // Display results
                     generatedContent.innerHTML = content;
@@ -975,7 +1039,7 @@
                         <p>Sorry, we encountered an error generating your content. Please try again.</p>
                         <p>If the problem persists, here's a sample based on your request:</p>
                         <br>
-                        ${generateSampleContent(platform, contentType, topic, activeTone, additionalInfo)}
+                        ${generateSampleContent(platform, contentType, postType, topic, activeTone, additionalInfo)}
                     `;
                     resultsContainer.style.display = 'block';
                 } finally {
@@ -986,12 +1050,31 @@
             });
             
             // Function to generate content using Perplexity API
-            async function generateContentWithAI(platform, contentType, topic, tone, additionalInfo) {
-                // Construct the prompt based on user inputs
-                let prompt = `Create ${contentType} for ${platform} about ${topic} with a ${tone.toLowerCase()} tone.`;
+            async function generateContentWithAI(platform, contentType, postType, topic, tone, additionalInfo) {
+                // Construct the prompt based on content type
+                let prompt;
                 
-                if (additionalInfo) {
-                    prompt += ` Additional context: ${additionalInfo}`;
+                if (contentType === 'video') {
+                    prompt = `Act as a senior short‑form video strategist and scriptwriter creating platform‑native Reels, TikToks, and YouTube Shorts optimized for watch time, completion rate, replays, shares, saves, and meaningful comments that trigger distribution on modern recommendation systems.
+                    
+                    Topic or Keywords: ${topic}
+                    ${additionalInfo ? `Additional context: ${additionalInfo}` : ''}
+                    Tone: ${tone}
+                    Platform: ${platform}`;
+                } else if (postType === 'carousel') {
+                    prompt = `Act as a senior social content strategist and designer specialized in high‑performance static and carousel posts. Create platform‑native carousels engineered for swipe‑through completion, dwell time, saves, shares, and meaningful comments.
+                    
+                    Topic or Keywords: ${topic}
+                    ${additionalInfo ? `Additional context: ${additionalInfo}` : ''}
+                    Tone: ${tone}
+                    Platform: ${platform}`;
+                } else {
+                    prompt = `Act as a senior social content strategist, copywriter, and designer specializing in high‑performance single static posts for Instagram, LinkedIn, Facebook, and Pinterest. Generate a complete, publish‑ready post optimizing for tap‑through, dwell time, saves, shares, and meaningful comments.
+                    
+                    Topic or Keywords: ${topic}
+                    ${additionalInfo ? `Additional context: ${additionalInfo}` : ''}
+                    Tone: ${tone}
+                    Platform: ${platform}`;
                 }
                 
                 // API request to Perplexity
@@ -1006,14 +1089,14 @@
                         messages: [
                             {
                                 role: 'system',
-                                content: 'You are an expert social media content creator. Generate engaging, platform-appropriate content based on user requests.'
+                                content: 'You are an expert social media content creator. Generate engaging, platform-appropriate content based on user requests. Format the response with clear sections and bullet points for easy reading.'
                             },
                             {
                                 role: 'user',
                                 content: prompt
                             }
                         ],
-                        max_tokens: 1000,
+                        max_tokens: 2000,
                         temperature: 0.7
                     })
                 });
@@ -1023,44 +1106,106 @@
                 }
                 
                 const data = await response.json();
-                return data.choices[0].message.content;
+                return formatAIResponse(data.choices[0].message.content, contentType, postType, topic, tone, platform);
+            }
+            
+            // Format the AI response for better readability
+            function formatAIResponse(content, contentType, postType, topic, tone, platform) {
+                let formattedContent = `<h4>Your ${tone} ${contentType === 'video' ? 'Video Idea' : (postType === 'carousel' ? 'Carousel Idea' : 'Static Post')} for ${platform} about ${topic}:</h4>`;
+                
+                // Convert content to bullet points and sections
+                const lines = content.split('\n');
+                
+                let inList = false;
+                
+                for (let i = 0; i < lines.length; i++) {
+                    const line = lines[i].trim();
+                    
+                    if (line.startsWith('## ') || line.startsWith('**')) {
+                        // Headers or bold text
+                        formattedContent += `<h5>${line.replace('## ', '').replace(/\*\*/g, '')}</h5>`;
+                    } else if (line.startsWith('- ') || line.startsWith('* ') || line.match(/^\d+\./)) {
+                        // List items
+                        if (!inList) {
+                            formattedContent += '<ul>';
+                            inList = true;
+                        }
+                        formattedContent += `<li>${line.replace(/^[-*]\s/, '').replace(/^\d+\.\s/, '')}</li>`;
+                    } else if (line === '' && inList) {
+                        // End of list
+                        formattedContent += '</ul>';
+                        inList = false;
+                    } else if (line !== '') {
+                        // Regular paragraph
+                        if (inList) {
+                            formattedContent += '</ul>';
+                            inList = false;
+                        }
+                        formattedContent += `<p>${line}</p>`;
+                    }
+                }
+                
+                // Close any open list
+                if (inList) {
+                    formattedContent += '</ul>';
+                }
+                
+                return formattedContent;
             }
             
             // Function to generate sample content (fallback)
-            function generateSampleContent(platform, contentType, topic, tone, additionalInfo) {
-                // Sample content based on inputs
+            function generateSampleContent(platform, contentType, postType, topic, tone, additionalInfo) {
                 let content = '';
                 
-                if (contentType === 'post') {
+                if (contentType === 'video') {
                     content = `
-                        <h4>${tone} ${platform.charAt(0).toUpperCase() + platform.slice(1)} Post about ${topic}:</h4>
-                        <p>Here's an engaging ${tone.toLowerCase()} post about ${topic} tailored for ${platform}.</p>
-                        <p>${getToneSpecificText(tone, topic)}</p>
-                        <p>What are your thoughts on ${topic}? Share in the comments below! 👇</p>
-                        <p>#${topic.replace(/\s+/g, '')} #${tone} #${platform}</p>
-                    `;
-                } else if (contentType === 'hashtags') {
-                    content = `
-                        <h4>${tone} Hashtags for ${topic}:</h4>
-                        <p>#${topic.replace(/\s+/g, '')} #${tone}${topic.replace(/\s+/g, '')} #${platform}</p>
-                        <p>#${getToneHashtags(tone, topic)}</p>
-                        <p>#Trending${topic.replace(/\s+/g, '')} #BestOf${topic.replace(/\s+/g, '')}</p>
-                    `;
-                } else if (contentType === 'adcopy') {
-                    content = `
-                        <h4>${tone} Ad Copy for ${topic}:</h4>
-                        <p>Discover the amazing world of ${topic} with our exclusive offer!</p>
-                        <p>${getToneSpecificText(tone, topic)}</p>
-                        <p>Limited time offer - act now! 🚀</p>
-                    `;
-                } else if (contentType === 'videoidea') {
-                    content = `
-                        <h4>${tone} Video Idea for ${topic}:</h4>
-                        <p>Create a ${tone.toLowerCase()} video about ${topic} that includes:</p>
+                        <h4>${tone} Video Idea for ${platform} about ${topic}:</h4>
                         <ul>
-                            <li>An engaging hook in the first 3 seconds</li>
-                            <li>${getToneVideoIdea(tone, topic)}</li>
-                            <li>A clear call to action at the end</li>
+                            <li><strong>Hook:</strong> Start with a surprising statistic about ${topic} that will make viewers stop scrolling</li>
+                            <li><strong>Script Outline:</strong>
+                                <ul>
+                                    <li>0-3s: "Did you know that ${topic} can increase engagement by up to 200%?"</li>
+                                    <li>3-8s: Show a quick before/after example related to ${topic}</li>
+                                    <li>8-15s: Explain the main concept in simple terms</li>
+                                    <li>15-25s: Provide one actionable tip viewers can implement immediately</li>
+                                    <li>25-30s: End with a question to encourage comments</li>
+                                </ul>
+                            </li>
+                            <li><strong>Visual Direction:</strong> Use quick cuts, text overlays, and relevant b-roll footage</li>
+                            <li><strong>Suggested Caption:</strong> "I've been using this ${topic} strategy and it's completely changed my approach! What's your experience with ${topic}? #${topic.replace(/\s+/g, '')} #${tone}Content #${platform}Tips"</li>
+                        </ul>
+                    `;
+                } else if (postType === 'carousel') {
+                    content = `
+                        <h4>${tone} Carousel Idea for ${platform} about ${topic}:</h4>
+                        <ul>
+                            <li><strong>Headline:</strong> 5 ${tone} Ways to Improve Your ${topic}</li>
+                            <li><strong>Carousel Slides:</strong>
+                                <ul>
+                                    <li>Cover slide with bold typography and engaging image related to ${topic}</li>
+                                    <li>Introduce the problem your audience faces with ${topic}</li>
+                                    <li>First tip with visual representation</li>
+                                    <li>Second tip with simple graphic</li>
+                                    <li>Third tip with before/after example</li>
+                                    <li>Fourth tip with step-by-step illustration</li>
+                                    <li>Fifth tip with actionable advice</li>
+                                    <li>Conclusion slide with CTA</li>
+                                </ul>
+                            </li>
+                            <li><strong>Caption:</strong> "Struggling with ${topic}? I've put together these 5 strategies that actually work! Which one will you try first? 👇"</li>
+                            <li><strong>Hashtags:</strong> #${topic.replace(/\s+/g, '')} #${tone}Tips #${platform}Strategy #ContentCreation</li>
+                        </ul>
+                    `;
+                } else {
+                    content = `
+                        <h4>${tone} Static Post for ${platform} about ${topic}:</h4>
+                        <ul>
+                            <li><strong>Headline:</strong> Transform Your ${topic} Strategy Today</li>
+                            <li><strong>Visual:</strong> Clean, high-contrast image with bold text overlay</li>
+                            <li><strong>Key Message:</strong> Discover how to improve your ${topic} approach with these simple steps</li>
+                            <li><strong>Caption:</strong> "Want to see amazing results with ${topic}? Try these proven strategies that have helped thousands of people succeed! ✨</li>
+                            <li>Which of these tips will you try first? Let me know in the comments! 👇</li>
+                            <li>#${topic.replace(/\s+/g, '')} #${tone}Tips #${platform}Strategy #SocialMediaTips"</li>
                         </ul>
                     `;
                 }
@@ -1070,58 +1215,6 @@
                 }
                 
                 return content;
-            }
-            
-            // Helper functions for sample content
-            function getToneSpecificText(tone, topic) {
-                const toneTexts = {
-                    'Humorous': `Why did the ${topic} cross the road? To get to the other side of your feed! 😂`,
-                    'Inspirational': `Let the power of ${topic} inspire you to achieve greatness today. ✨`,
-                    'Informative': `Did you know that ${topic} has been shown to improve engagement by up to 45%?`,
-                    'Casual': `Hey there! Just wanted to chat about ${topic} and see what you think.`,
-                    'Formal': `We are pleased to present our latest insights on ${topic} for professional consideration.`,
-                    'Witty': `They say ${topic} is like a box of chocolates - you never know what you're gonna get!`,
-                    'Enthusiastic': `OMG! I'm so excited about ${topic} - it's absolutely amazing! 🎉`,
-                    'Empathetic': `We understand that ${topic} can be challenging sometimes, and we're here to help.`,
-                    'Convincing': `You won't find a better solution for ${topic} than what we're offering - guaranteed!`,
-                    'Teasing': `Wait until you see what we've got cooking with ${topic}... it's going to blow your mind! 😉`
-                };
-                
-                return toneTexts[tone] || `This is some engaging content about ${topic}.`;
-            }
-            
-            function getToneHashtags(tone, topic) {
-                const toneHashtags = {
-                    'Humorous': `Funny${topic.replace(/\s+/g, '')} LOL`,
-                    'Inspirational': `Motivation Inspire`,
-                    'Informative': `Learn Facts`,
-                    'Casual': `Chat Daily`,
-                    'Formal': `Professional Business`,
-                    'Witty': `Clever Smart`,
-                    'Enthusiastic': `Excited Amazing`,
-                    'Empathetic': `Support Caring`,
-                    'Convincing': `Proof Results`,
-                    'Teasing': `SneakPeek ComingSoon`
-                };
-                
-                return toneHashtags[tone] || `Content${topic.replace(/\s+/g, '')}`;
-            }
-            
-            function getToneVideoIdea(tone, topic) {
-                const toneVideoIdeas = {
-                    'Humorous': `A funny skit related to ${topic} that will make viewers laugh`,
-                    'Inspirational': `An inspiring story about how ${topic} changed someone's life`,
-                    'Informative': `Key facts and statistics about ${topic} presented in an engaging way`,
-                    'Casual': `A relaxed chat about ${topic} like you're talking with friends`,
-                    'Formal': `A well-structured presentation on the benefits of ${topic}`,
-                    'Witty': `A clever take on ${topic} that shows your creative side`,
-                    'Enthusiastic': `An energetic review of ${topic} showing genuine excitement`,
-                    'Empathetic': `A compassionate discussion about challenges with ${topic} and solutions`,
-                    'Convincing': `Persuasive arguments why ${topic} is essential for your audience`,
-                    'Teasing': `A preview of exciting ${topic} content coming soon without giving everything away`
-                };
-                
-                return toneVideoIdeas[tone] || `Engaging content about ${topic} that keeps viewers watching`;
             }
             
             // Copy functionality
@@ -1136,21 +1229,43 @@
                 });
             });
             
-            // Download functionality
+            // Download as PDF functionality
             const downloadBtn = document.getElementById('downloadBtn');
             downloadBtn.addEventListener('click', function() {
-                const textToDownload = generatedContent.textContent;
-                const blob = new Blob([textToDownload], { type: 'text/plain' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'socialai-content.txt';
-                document.body.appendChild(a);
-                a.click();
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                
+                // Add logo and title
+                doc.setFillColor(108, 99, 255);
+                doc.rect(0, 0, 210, 30, 'F');
+                doc.setFontSize(20);
+                doc.setTextColor(255, 255, 255);
+                doc.text('SOCIAL TOOLS PRO', 105, 17, { align: 'center' });
+                
+                // Add content title
+                doc.setFontSize(16);
+                doc.setTextColor(0, 0, 0);
+                doc.text('AI-Generated Social Media Content', 105, 45, { align: 'center' });
+                
+                // Add content
+                const content = generatedContent.textContent;
+                const splitText = doc.splitTextToSize(content, 180);
+                
+                doc.setFontSize(12);
+                doc.text(splitText, 15, 60);
+                
+                // Add footer
+                doc.setFontSize(10);
+                doc.setTextColor(100, 100, 100);
+                doc.text('Generated by Social Tools Pro - https://socialtoolspro.com', 105, 280, { align: 'center' });
+                
+                // Save the PDF
+                doc.save('socialtoolspro-content.pdf');
+                
+                downloadBtn.innerHTML = '<i class="fas fa-check"></i> Downloaded!';
                 setTimeout(() => {
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
-                }, 0);
+                    downloadBtn.innerHTML = '<i class="fas fa-download"></i> Download as PDF';
+                }, 2000);
             });
         });
     </script>
