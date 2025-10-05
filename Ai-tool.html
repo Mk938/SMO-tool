@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Create stunning social media content with AI. Generate posts, carousels, and video ideas for all platforms.">
-    <meta name="keywords" content="AI social media tool, content generator, social media marketing, AI content creation">
     <title>Social Tools Pro - AI Content Creator</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -628,18 +626,8 @@
         }
         
         @keyframes loader-dots2 {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(24px, 0); }
-        }
-        
-        /* Sub Option Styles */
-        .sub-option {
-            display: none;
-            margin-top: 1rem;
-            padding: 1rem;
-            background: var(--light);
-            border-radius: 12px;
-            border-left: 4px solid var(--primary);
+            from { transform: translate(0, 0); }
+            to { transform: translate(24px, 0); }
         }
         
         /* Responsive Design */
@@ -746,7 +734,7 @@
     <section class="hero">
         <div class="container">
             <h1>Create Stunning Social Media Content</h1>
-            <p>Generate engaging posts, carousels, and video ideas for all social platforms in seconds. No payments, no subscriptions - completely free!</p>
+            <p>Generate engaging posts and carousels for all social platforms in seconds. No payments, no subscriptions - completely free!</p>
             <a href="#tool" class="cta-button"><i class="fas fa-wand-magic-sparkles"></i> Start Creating Now</a>
         </div>
     </section>
@@ -783,19 +771,9 @@
                 <div class="input-group">
                     <label for="contentType"><i class="fas fa-pen-fancy"></i> Content Type</label>
                     <select id="contentType">
-                        <option value="static">Static post / Carousel idea</option>
-                        <option value="video">Video idea</option>
+                        <option value="static">Static Post</option>
+                        <option value="carousel">Carousel Post</option>
                     </select>
-                </div>
-                
-                <div id="staticSubOption" class="sub-option">
-                    <div class="input-group">
-                        <label for="postType"><i class="fas fa-images"></i> Select Post Type</label>
-                        <select id="postType">
-                            <option value="static">Static Post</option>
-                            <option value="carousel">Carousel Post</option>
-                        </select>
-                    </div>
                 </div>
                 
                 <div class="input-group">
@@ -976,18 +954,6 @@
             // API Key (not visible to users)
             const API_KEY = "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";
             
-            // Show/hide sub-options based on content type
-            const contentTypeSelect = document.getElementById('contentType');
-            const staticSubOption = document.getElementById('staticSubOption');
-            
-            contentTypeSelect.addEventListener('change', function() {
-                if (this.value === 'static') {
-                    staticSubOption.style.display = 'block';
-                } else {
-                    staticSubOption.style.display = 'none';
-                }
-            });
-            
             // Tone selection
             const toneOptions = document.querySelectorAll('.option-card');
             toneOptions.forEach(option => {
@@ -1007,7 +973,6 @@
                 // Get form values
                 const platform = document.getElementById('platform').value;
                 const contentType = document.getElementById('contentType').value;
-                const postType = contentType === 'static' ? document.getElementById('postType').value : null;
                 const topic = document.getElementById('topic').value;
                 const activeTone = document.querySelector('.option-card.active').getAttribute('data-tone');
                 const additionalInfo = document.getElementById('additionalInfo').value;
@@ -1025,7 +990,7 @@
                 
                 try {
                     // Generate content using Perplexity API
-                    const content = await generateContentWithAI(platform, contentType, postType, topic, activeTone, additionalInfo);
+                    const content = await generateContentWithAI(platform, contentType, topic, activeTone, additionalInfo);
                     
                     // Display results
                     generatedContent.innerHTML = content;
@@ -1039,7 +1004,7 @@
                         <p>Sorry, we encountered an error generating your content. Please try again.</p>
                         <p>If the problem persists, here's a sample based on your request:</p>
                         <br>
-                        ${generateSampleContent(platform, contentType, postType, topic, activeTone, additionalInfo)}
+                        ${generateSampleContent(platform, contentType, topic, activeTone, additionalInfo)}
                     `;
                     resultsContainer.style.display = 'block';
                 } finally {
@@ -1050,31 +1015,30 @@
             });
             
             // Function to generate content using Perplexity API
-            async function generateContentWithAI(platform, contentType, postType, topic, tone, additionalInfo) {
+            async function generateContentWithAI(platform, contentType, topic, tone, additionalInfo) {
                 // Construct the prompt based on content type
                 let prompt;
                 
-                if (contentType === 'video') {
-                    prompt = `Act as a senior short‑form video strategist and scriptwriter creating platform‑native Reels, TikToks, and YouTube Shorts optimized for watch time, completion rate, replays, shares, saves, and meaningful comments that trigger distribution on modern recommendation systems.
-                    
+                if (contentType === 'carousel') {
+                    prompt = `Act as a senior social content strategist and designer specialized in high‑performance static and carousel posts. Create platform‑native carousels engineered for swipe‑through completion, dwell time, saves, shares, and meaningful comments. Use only the mandatory input (Topic/Keywords). Treat all other fields as optional and infer smart defaults.
+
+                    Required input:
                     Topic or Keywords: ${topic}
                     ${additionalInfo ? `Additional context: ${additionalInfo}` : ''}
                     Tone: ${tone}
-                    Platform: ${platform}`;
-                } else if (postType === 'carousel') {
-                    prompt = `Act as a senior social content strategist and designer specialized in high‑performance static and carousel posts. Create platform‑native carousels engineered for swipe‑through completion, dwell time, saves, shares, and meaningful comments.
+                    Platform: ${platform}
                     
-                    Topic or Keywords: ${topic}
-                    ${additionalInfo ? `Additional context: ${additionalInfo}` : ''}
-                    Tone: ${tone}
-                    Platform: ${platform}`;
+                    Now generate the complete output for the given Topic/Keywords.`;
                 } else {
-                    prompt = `Act as a senior social content strategist, copywriter, and designer specializing in high‑performance single static posts for Instagram, LinkedIn, Facebook, and Pinterest. Generate a complete, publish‑ready post optimizing for tap‑through, dwell time, saves, shares, and meaningful comments.
-                    
+                    prompt = `Act as a senior social content strategist, copywriter, and designer specializing in high‑performance single static posts for Instagram, LinkedIn, Facebook, and Pinterest. Generate a complete, publish‑ready post from only the Topic/Keywords, optimizing for tap‑through, dwell time, saves, shares, and meaningful comments. Infer smart defaults for any missing optional inputs.
+
+                    Required input:
                     Topic or Keywords: ${topic}
                     ${additionalInfo ? `Additional context: ${additionalInfo}` : ''}
                     Tone: ${tone}
-                    Platform: ${platform}`;
+                    Platform: ${platform}
+                    
+                    Now generate the complete output for the given Topic/Keywords.`;
                 }
                 
                 // API request to Perplexity
@@ -1106,12 +1070,12 @@
                 }
                 
                 const data = await response.json();
-                return formatAIResponse(data.choices[0].message.content, contentType, postType, topic, tone, platform);
+                return formatAIResponse(data.choices[0].message.content, contentType, topic, tone, platform);
             }
             
             // Format the AI response for better readability
-            function formatAIResponse(content, contentType, postType, topic, tone, platform) {
-                let formattedContent = `<h4>Your ${tone} ${contentType === 'video' ? 'Video Idea' : (postType === 'carousel' ? 'Carousel Idea' : 'Static Post')} for ${platform} about ${topic}:</h4>`;
+            function formatAIResponse(content, contentType, topic, tone, platform) {
+                let formattedContent = `<h4>Your ${tone} ${contentType === 'carousel' ? 'Carousel Idea' : 'Static Post'} for ${platform} about ${topic}:</h4>`;
                 
                 // Convert content to bullet points and sections
                 const lines = content.split('\n');
@@ -1154,28 +1118,10 @@
             }
             
             // Function to generate sample content (fallback)
-            function generateSampleContent(platform, contentType, postType, topic, tone, additionalInfo) {
+            function generateSampleContent(platform, contentType, topic, tone, additionalInfo) {
                 let content = '';
                 
-                if (contentType === 'video') {
-                    content = `
-                        <h4>${tone} Video Idea for ${platform} about ${topic}:</h4>
-                        <ul>
-                            <li><strong>Hook:</strong> Start with a surprising statistic about ${topic} that will make viewers stop scrolling</li>
-                            <li><strong>Script Outline:</strong>
-                                <ul>
-                                    <li>0-3s: "Did you know that ${topic} can increase engagement by up to 200%?"</li>
-                                    <li>3-8s: Show a quick before/after example related to ${topic}</li>
-                                    <li>8-15s: Explain the main concept in simple terms</li>
-                                    <li>15-25s: Provide one actionable tip viewers can implement immediately</li>
-                                    <li>25-30s: End with a question to encourage comments</li>
-                                </ul>
-                            </li>
-                            <li><strong>Visual Direction:</strong> Use quick cuts, text overlays, and relevant b-roll footage</li>
-                            <li><strong>Suggested Caption:</strong> "I've been using this ${topic} strategy and it's completely changed my approach! What's your experience with ${topic}? #${topic.replace(/\s+/g, '')} #${tone}Content #${platform}Tips"</li>
-                        </ul>
-                    `;
-                } else if (postType === 'carousel') {
+                if (contentType === 'carousel') {
                     content = `
                         <h4>${tone} Carousel Idea for ${platform} about ${topic}:</h4>
                         <ul>
